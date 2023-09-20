@@ -1,0 +1,111 @@
+
+@use 'base/variables' as v;
+  
+  .space-between { 
+    justify-content: space-between; 
+  }  
+  .flex-container {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+  }
+  .flex-end { 
+    justify-content: flex-end; 
+  }  
+  .space-evenly { 
+    justify-content: space-evenly; 
+  }
+  // *{
+  //   padding: 0px;
+  //   margin: 0px;
+  // }
+  ul, ol {
+    list-style: none;
+  }
+  .nav li a {
+    background-color: #001F5B;
+    color: #FFF;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: flex;
+  }
+  
+  .nav li a:hover {
+    background-color: #434343;
+  }
+  
+  .nav > li {
+    float: left;
+  }
+  
+  .nav li ul {
+    display:none;
+    position: absolute;
+    min-width: 200px;
+  }
+  
+  .nav li:hover > ul {
+    display: block;
+  }
+  
+  .nav li ul li {
+    position: relative;
+  }
+  
+  .nav li ul li ul {
+    right: -200px;
+    top: 0px;
+    background-color: yellow;
+  }
+  
+  .controls{
+          width: 50%;
+          background: white;
+          padding: 10px;
+          border-radius: 16px;
+          margin-bottom: 10px;
+          border: 1px solid black;
+          font-family:Fragment Core;
+          font-size: 16px;
+  
+        }
+  
+  .controls2{
+          width: 100%;
+          background: white;
+          padding: 10px;
+          border-radius: 160px;
+          margin-bottom: 10px;
+          border: 1px solid black;
+          font-family:Fragment Core;
+          font-size: 16px;
+        }
+  
+  .botons{
+          width: 100%;
+          background: #fff;
+          border-radius: 160px;
+          padding: 10px;
+          color: #001F5B;
+          margin: 10px 0 ;
+          font-size: 16px;
+          font-family: lato;
+        }
+  .etiqueta{
+    font-family: lato;
+    font-size: 16px;
+    color: #001F5B;
+  }
+  
+  .botons {
+      transition: transform .2s; 
+  }
+   
+  .botons:hover {
+      transform: scale(1.5); 
+  }
+  
+
+  
+  

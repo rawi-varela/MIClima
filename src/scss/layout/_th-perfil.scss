@@ -1,0 +1,22 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.contenedor-propiedades {
+    margin: 0;
+    @include m.grid(2,5rem);
+
+    @include m.tablet {
+        @include m.grid(3,5rem);
+        img {
+            width: 30rem;
+            height: 15rem;
+        } 
+    }
+}
+
+.propiedad {
+    img {
+        width: 30rem;
+        height: 15rem;
+    }       
+}

@@ -1,0 +1,36 @@
+@use 'base/variables' as v;
+
+    table {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    margin-top: 4rem;
+    width: 90%;
+    border-spacing: 0;
+    text-align: center;
+    margin: 0 auto;
+    }
+    thead {
+        background-color: v.$azul;
+
+        th {
+            color: v.$blanco;
+            padding: 1.5rem;
+            font-size: 1.3rem;
+            border-top: .4rem solid v.$azulMedio;
+            border-bottom: .2rem solid v.$blanco;
+            text-transform: uppercase;
+        }
+    }
+    tr {
+        text-align: center;
+        &:hover td {
+            background: #d0dafd;
+            color: #339;
+        }
+    }
+    
+    td {
+        background-color: v.$azulClaro;
+        // padding: 0 1rem;
+        border-bottom: .1rem solid v.$blanco;  
+        font-size: 1.1rem; 
+    }

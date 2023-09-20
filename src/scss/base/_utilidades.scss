@@ -1,0 +1,25 @@
+@use 'variables' as v;
+
+.contenedor {
+    width: 95%;
+    max-width: 120rem;
+    margin: 0 auto;
+}
+.contenido-centrado {
+    max-width: 80rem;
+}
+
+.alinear-derecha {
+    display: flex;
+    justify-content: flex-end; //Colocar al final
+}
+// .alinear-izquierda { //Innecesario
+//     display: flex;
+//     justify-content: flex-start; 
+// }
+.alinear-centro {
+    text-align: center;
+}
+.w-100{
+    width: 100%;
+}
