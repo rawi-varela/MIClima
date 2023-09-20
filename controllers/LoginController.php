@@ -63,4 +63,10 @@ class LoginController {
         $_SESSION = [];
         header('Location: /');
     }
+
+    public static function borrarestafuncion() {
+        session_start();
+        $_SESSION = [];
+        header('Location: /');
+    }
 }
