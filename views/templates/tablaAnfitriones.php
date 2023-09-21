@@ -34,10 +34,10 @@
                             <a href="/lider/evaluacion?id=<?php echo $anfitrion->id; ?>" class="boton">Evaluar</a>
                             <a href="/lider/historial?id=<?php echo $anfitrion->id; ?>" class="boton">Historial</a>
                         </td>
-                    <?php } else { ?> 
+                    <?php } else if(array_key_exists('th', $_SESSION)) { ?> 
                         <td>
                             <a href="/th/editar?id=<?php echo $anfitrion->id; ?>" class="boton">Editar</a>
-                            <a href="/th/eliminar?id=<?php echo $anfitrion->id; ?>" class="boton">Eliminar</a>
+                            <a href="/th/eliminar?id=<?php echo $anfitrion->id; ?>" class="boton">Deshabilitar</a>
                         </td>
                     <?php } ?>
                 </tr>

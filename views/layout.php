@@ -1,3 +1,18 @@
+<?php
+    if(!isset($_SESSION)) { // Verificar si ya hay sesión
+        session_start(); //Para tener acceso a $_SESSION
+    }
+    
+    $auth = $_SESSION['login'] ?? false; // ?? si no existe asignar de placeholder false a la variable auth
+    $admin = $_SESSION['admin'] ?? false; // ?? si no existe asignar de placeholder false 
+
+    if(!isset($inicio)) {
+        $inicio = false;
+    }
+    //Validar si estamos en login.php
+    $login = $_SERVER['PHP_SELF'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +38,15 @@
             <div class="derecha">
                 <nav class="navegacion">
                     <a href="/nosotros">Nosotros</a>
-                    <a href="/login">Iniciar Sesión</a>
+                    <?php if(!$auth && !$admin): ?>
+                        <a href="/login">Iniciar Sesión</a>
+                    <?php endif; ?>
+                    <?php if($admin): ?>
+                        <a href="/admin">Administrar</a>
+                    <?php endif; ?>
+                    <?php if($auth || $admin): ?>
+                        <a href="/logout">Cerrar Sesión</a>
+                    <?php endif; ?>
                 </nav>
             </div>
         </div> <!--.barra-->

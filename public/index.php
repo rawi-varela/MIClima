@@ -10,6 +10,7 @@ use Controllers\AnfitrionController;
 use Controllers\AnfitrionRelacionalController;
 use Controllers\EvaluacionController;
 use Controllers\PaginasController;
+use Controllers\AdminController;
 
 $router = new Router(); //Instancia de Router para mostrar vistas
 
@@ -21,10 +22,12 @@ $router->get('/logout', [LoginController::class, 'logout']);
 // ZONA PÚBLICA
 $router->get('/', [PaginasController::class, 'index']);
 $router->get('/nosotros', [PaginasController::class, 'us']);
+// $router->get('/superusuario', [PaginasController::class, 'admin']);
 
 
 
 // ZONA PRIVADA
+$router->get('/admin', [AdminController::class, 'admin']);
 $router->get('/anfitrion-perfil', [EvaluacionController::class, 'anfitrion']);
 $router->post('/anfitrion-perfil', [AnfitrionController::class, 'anfitrion']);
 

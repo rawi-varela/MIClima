@@ -5,7 +5,7 @@ namespace Model;
 class Anfitrion extends ActiveRecord {
     // Base de datos
     protected static $tabla = 'anfitriones';
-    protected static $columnasDB = ['id', 'nombre', 'apellidoPat', 'apellidoMat', 'contraseña', 'genero', 'fechaInicio', 'estado', 'tipoUsuario', 'area_id', 'posicion_id', 'propiedad_id'];
+    protected static $columnasDB = ['id', 'nombre', 'apellidoPat', 'apellidoMat', 'contraseña', 'genero', 'fechaInicio', 'estado', 'tipoUsuario_id', 'area_id', 'posicion_id', 'propiedad_id'];
 
     public $id;
     public $nombre;
@@ -15,7 +15,7 @@ class Anfitrion extends ActiveRecord {
     public $genero;
     public $fechaInicio;
     public $estado;
-    public $tipoUsuario;
+    public $tipoUsuario_id;
     public $area_id;
     public $posicion_id;
     public $propiedad_id;
@@ -29,10 +29,15 @@ class Anfitrion extends ActiveRecord {
         $this->genero = $args['genero'] ?? '';
         $this->fechaInicio = $args['fechaInicio'] ?? '';
         $this->estado = $args['estado'] ?? '';
-        $this->tipoUsuario = $args['tipoUsuario'] ?? '0'; //Por defecto es anfitrión
+        $this->tipoUsuario_id = $args['tipoUsuario_id'] ?? '0'; //Por defecto es anfitrión
         $this->area_id = $args['area_id'] ?? '';
         $this->posicion_id = $args['posicion_id'] ?? '';
         $this->propiedad_id = $args['propiedad_id'] ?? '';
+    }
+
+    //Mensajes de validación para la creación de nuevos Anfitriones
+    public function valdarNuevoUsuario() {
+
     }
 
     // Validar inicio de sesión
@@ -46,23 +51,18 @@ class Anfitrion extends ActiveRecord {
 
         return self::$alertas;
     }
-    
-    public function validarNombreUsuario() {
-        if(!$this->id) {
-            self::$alertas['error'][] = 'El Nombre de usuario es Obligatorio';
-        }
-        return self::$alertas;
-    }
 
-    public function validarPassword() {
-        if(!$this->contraseña) {
-            self::$alertas['error'][] = 'El Password es obligatorio';
-        }
-        if(strlen($this->contraseña) < 4) {
-            self::$alertas['error'][] = 'El Password debe tener al menos 4 caracteres';
+    // Revisa si el usuario ya existe
+    public function existeUsuario() {
+        $query = " SELECT * FROM " . self::$tabla . " WHERE id = '" . $this->id . "' LIMIT 1";
+
+        $resultado = self::$db->query($query);
+
+        if($resultado->num_rows) {
+            self::$alertas['error'][] = 'El Anfitrión ya está registrado';
         }
 
-        return self::$alertas;
+        return $resultado;
     }
 
     public function hashPassword() {
@@ -70,22 +70,13 @@ class Anfitrion extends ActiveRecord {
     }
 
     public function comprobarPassword($contraseña) {
-        // $resultado = password_verify($contraseña, $this->contraseña);
+        $resultado = password_verify($contraseña, $this->contraseña);
         
-        if(!$contraseña === $this->contraseña) {
+        if(!$resultado) {
             self::$alertas['error'][] = 'Contraseña Incorrecta';
         } else {
             return true;
         }
     }
-
-    // Revisa si el usuario ya existe
-    // public function existeUsuario() {}
-
-    // Valida la creación de una cuenta
-    // public function validarNuevaCuenta() {}
-
-    // Crea el token para el usuario
-    // public function crearToken() {}
 
 }

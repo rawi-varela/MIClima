@@ -9,7 +9,7 @@ class THController {
 
     public static function th( Router $router ) {
         session_start();
-        //  isAuthTH();
+        isAuth();
 
         //Seria un find, para obtener el id de la propiedad con ese se establecen lso permisos
 

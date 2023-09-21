@@ -18,4 +18,10 @@ class PaginasController {
 
         ]);
     }
+
+    // public static function admin( Router $router) {
+    //     $router->render('paginas/usuario', [
+
+    //     ]);
+    // }
 }

@@ -27,20 +27,16 @@ function validarORedireccionar(string $url) {
 
 // Función que revisa que el usuario este autenticado
 // Para proteger las rutas
-function isAuthAnfitrion() : void {
+function isAuth() : void {
     if(!isset($_SESSION['login'])) {
         header('Location: /');
     }
 }
-//Se ponen después de los session_start() en los Controllers
-function isAuthALider() : void {
-    if(!isset($_SESSION['lider'])) {
+
+function isAdmin() : void {
+    if(!isset($_SESSION['admin'])) {
         header('Location: /');
     }
 }
 
-function isAuthTH() : void {
-    if(!isset($_SESSION['th'])) {
-        header('Location: /');
-    }
-}
+//Creo si son necesarias las funciones IsTH, IsLider, IsAnfitrion para proteger las rutas entre estos

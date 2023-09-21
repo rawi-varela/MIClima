@@ -17,9 +17,9 @@
 
 	<!-- Select para elegir la posición -->
 	<select name="posicion" id="posicion">
-	    <option value="" selected>-- Seleccione un Área --</option>
-		<?php foreach($areas as $area) { ?>
-		        <option value="<?php echo $area->id; ?>"><?php echo $area->nombreArea; ?></option>
+	    <option value="" selected>-- Seleccione una Propiedad --</option>
+		<?php foreach($propiedades as $propiedad) { ?>
+		        <option value="<?php echo $propiedad->id; ?>"><?php echo $propiedad->nombrePropiedad; ?></option>
 	    <?php } ?>
 	</select>
 </div>

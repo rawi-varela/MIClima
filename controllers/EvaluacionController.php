@@ -9,7 +9,7 @@ use Model\AnfitrionRelacional;
 class EvaluacionController {
     public static function anfitrion(Router $router) {
         session_start();
-        //  isAuthAnfitrion();
+        isAuth();
         
         //Obtener los resultados del anfitrion evaluado
         $anfitrion = Evaluacion::find($_SESSION['id']);

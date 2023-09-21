@@ -11,7 +11,7 @@ use MVC\Router;
 class AnfitrionRelacionalController {
     public static function anfitrionesCompletos( Router $router) {
         session_start();
-        // isAuthALider();
+        isAuth();
 
         // Consultar la base de datos
         $consulta = "SELECT anfitriones.id, anfitriones.nombre, anfitriones.apellidoPat, anfitriones.apellidoMat, anfitriones.genero, anfitriones.fechaInicio, anfitriones.estado, ";
@@ -39,8 +39,15 @@ class AnfitrionRelacionalController {
             $router->render('lider/index', [
                 'anfitriones' => $anfitriones
             ]);
-        } else {
+        } else if(array_key_exists('th', $_SESSION)) {
             $router->render('th/contentAnfitriones', [
+                'anfitriones' => $anfitriones,
+                'areas' => $areas,
+                'posiciones' => $posiciones,
+                'propiedades' => $propiedades
+            ]);
+        } else if(array_key_exists('admin', $_SESSION)) {
+            $router->render('admin/index', [
                 'anfitriones' => $anfitriones,
                 'areas' => $areas,
                 'posiciones' => $posiciones,
