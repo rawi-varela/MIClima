@@ -7,7 +7,7 @@
         </div>
         <?php
             include_once __DIR__ . "/../templates/select.php";
-            ?>
+        ?>
         <?php
         include_once __DIR__ . "/../templates/tablaAnfitriones.php";
         ?>

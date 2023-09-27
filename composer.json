@@ -15,5 +15,7 @@
             "email": "rawi.varela@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "intervention/image": "^2.7"
+    }
 }

@@ -22,12 +22,35 @@ $router->get('/logout', [LoginController::class, 'logout']);
 // ZONA PÚBLICA
 $router->get('/', [PaginasController::class, 'index']);
 $router->get('/nosotros', [PaginasController::class, 'us']);
-// $router->get('/superusuario', [PaginasController::class, 'admin']);
-
-
 
 // ZONA PRIVADA
 $router->get('/admin', [AdminController::class, 'admin']);
+// Propiedades
+$router->get('/admin/propiedades-crear', [AdminController::class, 'crearPropiedad']);
+$router->post('/admin/propiedades-crear', [AdminController::class, 'crearPropiedad']);
+$router->get('/admin/propiedades-actualizar', [AdminController::class, 'actualizarPropiedad']);
+$router->post('/admin/propiedades-actualizar', [AdminController::class, 'actualizarPropiedad']);
+$router->post('/admin/propiedades-eliminar', [AdminController::class, 'eliminarPropiedad']);
+// Areas
+$router->get('/admin/areas-crear', [AdminController::class, 'crearArea']);
+$router->post('/admin/areas-crear', [AdminController::class, 'crearArea']);
+$router->get('/admin/areas-actualizar', [AdminController::class, 'actualizarArea']);
+$router->post('/admin/areas-actualizar', [AdminController::class, 'actualizarArea']);
+$router->post('/admin/areas-eliminar', [AdminController::class, 'eliminarArea']);
+// Puestos
+$router->get('/admin/puestos-crear', [AdminController::class, 'crearPuesto']);
+$router->post('/admin/puestos-crear', [AdminController::class, 'crearPuesto']);
+$router->get('/admin/puestos-actualizar', [AdminController::class, 'actualizarPuesto']);
+$router->post('/admin/puestos-actualizar', [AdminController::class, 'actualizarPuesto']);
+$router->post('/admin/puestos-eliminar', [AdminController::class, 'eliminarPuesto']);
+// Usuarios TH
+$router->get('/admin/th-crear', [AdminController::class, 'crearTH']);
+$router->post('/admin/th-crear', [AdminController::class, 'crearTH']);
+$router->get('/admin/th-actualizar', [AdminController::class, 'actualizarTH']);
+$router->post('/admin/th-actualizar', [AdminController::class, 'actualizarTH']);
+$router->post('/admin/th-eliminar', [AdminController::class, 'eliminarTH']); //Antes Inactivar el AnfitrionTH
+
+
 $router->get('/anfitrion-perfil', [EvaluacionController::class, 'anfitrion']);
 $router->post('/anfitrion-perfil', [AnfitrionController::class, 'anfitrion']);
 

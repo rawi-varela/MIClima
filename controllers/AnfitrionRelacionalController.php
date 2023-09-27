@@ -31,6 +31,7 @@ class AnfitrionRelacionalController {
         $anfitriones = AnfitrionRelacional::SQL($consulta);
 
         //Consultar Área y Posición para los Select en th-administrar-anfitriones
+        //Corregir, ya no servirá el all 26/09
         $areas = Area::all();
         $posiciones = Posicion::all();
         $propiedades = Propiedad::all();
