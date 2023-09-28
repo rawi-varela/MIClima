@@ -9,6 +9,10 @@ class ActiveRecord {
 
     // Alertas y Mensajes
     protected static $alertas = [];
+
+    //Visibilidad de los atributos (Para que Intelephense no marque error, es innecesario )
+    public $id;
+    public $imagen;
     
     // Definir la conexión a la BD - includes/database.php
     public static function setDB($database) {
@@ -80,6 +84,27 @@ class ActiveRecord {
         return $sanitizado;
     }
 
+    // Subida de archivos
+    public function setImagen($imagen) {
+        // Elimina la imagen previa
+        if( !is_null($this->id) ) { //Ya que si hay un id significa que hay imagen
+            $this->borrarImagen();
+        }
+        // Asignar al atributo de imagen el nombre de la imagen
+        if($imagen) {
+            $this->imagen = $imagen;
+        }
+    }
+
+    // Elimina el archivo
+    public function borrarImagen() {
+        // Comprobar si existe el archivo
+        $existeArchivo = file_exists(CARPETA_IMAGENES . $this->imagen);
+        if($existeArchivo) {
+            unlink(CARPETA_IMAGENES . $this->imagen);
+        }
+    }
+
     // Sincroniza BD con Objetos en memoria
     public function sincronizar($args=[]) { 
         foreach($args as $key => $value) {
@@ -140,7 +165,25 @@ class ActiveRecord {
         return $resultado;
     }
 
+    // crea un nuevo registro con ID en el FORM
+    public function create() {
+        // Sanitizar los datos
+        $atributos = $this->sanitizarAtributos();
 
+        // Insertar en la base de datos
+        $query = " INSERT INTO " . static::$tabla . " ( ";
+        $query .= join(', ', array_keys($atributos));
+        $query .= " ) VALUES (' "; 
+        $query .= join("', '", array_values($atributos));
+        $query .= " ') ";
+
+        // Resultado de la consulta
+        $resultado = self::$db->query($query);
+        return [
+           'resultado' =>  $resultado,
+           'id' => self::$db->insert_id
+        ];
+    }
 
     // crea un nuevo registro
     public function crear() {

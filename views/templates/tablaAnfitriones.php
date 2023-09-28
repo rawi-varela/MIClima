@@ -10,6 +10,9 @@
         <th>Área</th>
         <th>Posición</th>
         <th>Propiedad</th>
+        <?php if(isset($ths)) { ?> <!-- Para la Tabla TH del Admin -->
+        <th>Privilegios</th> 
+        <?php } ?> 
         <th>Acciones</th>
 	</thead>
     <tbody> <!--. Mostrar los resultados -->
@@ -24,7 +27,10 @@
             <td><?php echo $anfitrion->estado; ?></td>
             <td><?php echo $anfitrion->area; ?></td>
             <td><?php echo $anfitrion->posicion; ?></td>
-            <td><?php echo $anfitrion->propiedad; ?></td>      
+            <td><?php echo $anfitrion->propiedad; ?></td>   
+            <?php if(isset($ths)) { ?>
+            <td><?php echo $ths->privilegios; ?></td> 
+            <?php } ?>   
     <?php 
         // debuguear($_SERVER['PATH_INFO']);
         if($_SERVER['PATH_INFO'] === "/lider-perfil"){ ?>

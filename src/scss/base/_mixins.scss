@@ -36,7 +36,7 @@
     margin: $margin;
 
     @include telefono() {
-        width: auto;
+        // width: auto;
     }
     &:hover {
         background-color: darken( $bgColor, 10% );

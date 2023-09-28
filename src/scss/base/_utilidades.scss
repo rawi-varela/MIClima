@@ -5,6 +5,10 @@
     max-width: 120rem;
     margin: 0 auto;
 }
+.seccion {
+    margin-top: calc(v.$separacion / 2);
+    margin-bottom: calc(v.$separacion / 2);
+}
 .contenido-centrado {
     max-width: 80rem;
 }
@@ -22,4 +26,31 @@
 }
 .w-100{
     width: 100%;
+}
+
+.admin {
+    margin-top: 4rem;
+    width: 90%;
+    border-spacing: 0;
+    text-align: center;
+
+    thead {
+        background-color: v.$azul;
+
+        th {
+            color: v.$blanco;
+            padding: 2rem;
+        }
+        tr {
+            text-align: center;
+        }
+    }
+
+    .imagen-tabla {
+        width: 10rem;
+    }
+}
+
+.imagen-small {
+    width: 20rem;
 }

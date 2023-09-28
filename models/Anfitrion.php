@@ -5,7 +5,7 @@ namespace Model;
 class Anfitrion extends ActiveRecord {
     // Base de datos
     protected static $tabla = 'anfitriones';
-    protected static $columnasDB = ['id', 'nombre', 'apellidoPat', 'apellidoMat', 'contraseña', 'genero', 'fechaInicio', 'estado', 'tipoUsuario_id', 'area_id', 'posicion_id', 'propiedad_id'];
+    protected static $columnasDB = ['id', 'nombre', 'apellidoPat', 'apellidoMat', 'contraseña', 'genero', 'fechaInicio', 'tipoUsuario_id', 'estadoUsuario_id', 'posicion_id'];
 
     public $id;
     public $nombre;
@@ -14,11 +14,9 @@ class Anfitrion extends ActiveRecord {
     public $contraseña;
     public $genero;
     public $fechaInicio;
-    public $estado;
     public $tipoUsuario_id;
-    public $area_id;
+    public $estadoUsuario_id;
     public $posicion_id;
-    public $propiedad_id;
 
     public function __construct($args = []) {
         $this->id = $args['id'] ?? null;
@@ -28,16 +26,46 @@ class Anfitrion extends ActiveRecord {
         $this->contraseña = $args['contraseña'] ?? '';
         $this->genero = $args['genero'] ?? '';
         $this->fechaInicio = $args['fechaInicio'] ?? '';
-        $this->estado = $args['estado'] ?? '';
-        $this->tipoUsuario_id = $args['tipoUsuario_id'] ?? '0'; //Por defecto es anfitrión
-        $this->area_id = $args['area_id'] ?? '';
+        $this->tipoUsuario_id = $args['tipoUsuario_id'] ?? '';
+        $this->estadoUsuario_id = $args['estadoUsuario_id'] ?? '';
         $this->posicion_id = $args['posicion_id'] ?? '';
-        $this->propiedad_id = $args['propiedad_id'] ?? '';
     }
 
     //Mensajes de validación para la creación de nuevos Anfitriones
-    public function valdarNuevoUsuario() {
+    public function validar() {
+        if(!$this->id) {
+            self::$alertas['error'][] = 'El ID del Anfitrión es Obligatorio';
+        }
+        if(!$this->nombre) {
+            self::$alertas['error'][] = 'El Nombre del Anfitrión es Obligatorio';
+        }
+        if(!$this->apellidoPat) {
+            self::$alertas['error'][] = 'El Apellido Paterno del Anfitrión es Obligatorio';
+        }
+        if(!$this->apellidoMat) {
+            self::$alertas['error'][] = 'El Apellido Materno del Anfitrión es Obligatorio';
+        }
+        if(!$this->contraseña) {
+            self::$alertas['error'][] = 'La contraseña del Anfitrión es Obligatorio';
+        }
+        if(!$this->genero) {
+            self::$alertas['error'][] = 'Selecciona el Género Anfitrión';
+        }
+        if(!$this->fechaInicio) {
+            self::$alertas['error'][] = 'Ingresa la Fecha de Inicio';
+        }
+        if(!$this->tipoUsuario_id) {
+            self::$alertas['error'][] = 'Selecciona el Tipo de Anfitrión';
+        }
+        if(!$this->estadoUsuario_id) {
+            self::$alertas['error'][] = 'Selecciona el Estado del Anfitrión';
+        }
+        if(!$this->posicion_id) {
+            self::$alertas['error'][] = 'Selecciona el Puesto del Anfitrión';
+        }
+        //Faltaría Seleccionar las Propiedades con privilegios
 
+        return self::$alertas;
     }
 
     // Validar inicio de sesión

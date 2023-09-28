@@ -14,15 +14,17 @@ class AnfitrionRelacionalController {
         isAuth();
 
         // Consultar la base de datos
-        $consulta = "SELECT anfitriones.id, anfitriones.nombre, anfitriones.apellidoPat, anfitriones.apellidoMat, anfitriones.genero, anfitriones.fechaInicio, anfitriones.estado, ";
+        $consulta = "SELECT anfitriones.id, anfitriones.nombre, anfitriones.apellidoPat, anfitriones.apellidoMat, anfitriones.genero, anfitriones.fechaInicio, estadoUsuario.estado, ";
         $consulta .= " area.nombreArea as area, posicion.nombrePosicion as posicion, propiedad.nombrePropiedad as propiedad ";
         $consulta .= " FROM anfitriones ";
-        $consulta .= " LEFT OUTER JOIN area ";
-        $consulta .= " ON anfitriones.area_id=area.id ";
+        $consulta .= " LEFT OUTER JOIN estadoUsuario ";
+        $consulta .= " ON estadoUsuario.id=anfitriones.estadoUsuario_id ";
         $consulta .= " LEFT OUTER JOIN posicion ";
         $consulta .= " ON posicion.id=anfitriones.posicion_id ";
+        $consulta .= " LEFT OUTER JOIN area ";
+        $consulta .= " ON area.id=posicion.area_id ";
         $consulta .= " LEFT OUTER JOIN propiedad ";
-        $consulta .= " ON propiedad.id=anfitriones.propiedad_id ";
+        $consulta .= " ON propiedad.id=area.propiedad_id ";
 
         if(array_key_exists('th', $_SESSION)){ //Si el User es TH va a validar la propiedad
             $consulta .= " WHERE propiedad_id = $_SESSION[propiedad]";

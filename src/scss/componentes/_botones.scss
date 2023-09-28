@@ -4,6 +4,10 @@
 .boton {
     @include m.boton(v.$azul, v.$blanco, 1rem, block, 0.3rem 0);
 }
+.boton-width {
+    @include m.boton(v.$azul, v.$blanco, 1rem, block, 0.3rem 0);
+    width: 100%;
+}
 .boton-eliminar {
     @include m.boton(v.$rojo, v.$blanco, 1rem, block, 0.3rem 0);
 }

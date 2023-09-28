@@ -3,7 +3,6 @@
 namespace Controllers;
 
 use MVC\Router;
-USE Model\Anfitrion;
 
 class THController {
 
