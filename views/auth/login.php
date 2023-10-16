@@ -1,25 +1,25 @@
-<main class="contenedor contenido-centrado">
+<main class="auth">
   <h1>Iniciar Sesión</h1>
 
-  <?php include_once __DIR__ . '/../templates/alertas.php'; ?>
+  <div class="dashboard__formulario">
+    <?php 
+      include_once __DIR__ . '/../templates/alertas.php'; 
+    ?>
 
-  <form method="POST" class="formulario" action="/login">
-    <fieldset>
-      <legend>Email y Password</legend>
+  <p class="auth__texto">Inicia sesión en KCHAT</p> 
 
-        <label for="id">Nombre Usuario</label>
-        <input type="text" name="id" placeholder="Tu Nombre de Usuario" id="id" >
+    <form method="POST" class="formulario" action="/login">
+      <div class="formulario__campo">
+        <label class="formulario__label" for="id">Usuario</label>
+        <input class="formulario__input" type="text" name="id" placeholder="Tu Usuario" id="id" >
+      </div>
 
-        <label for="contraseña">Contraseña</label>
-        <input type="password" name="contraseña" placeholder="Tu contraseña" id="contraseña" >
-      </fieldset>
+      <div class="formulario__campo">
+        <label class="formulario__label" for="contraseña">Contraseña</label>
+        <input class="formulario__input" type="password" name="contraseña" placeholder="Tu contraseña" id="contraseña">
+      </div>
 
-    <input type="submit" value="Iniciar Sesión" class="boton boton-sesion">
-  </form>
-
-  <?php
-      $script = "
-      <script src='build/js/app.js'></script>
-      "; 
-  ?>
+        <input type="submit" value="Iniciar Sesión" class="formulario__submit">
+    </form>
+  </div>
 </main>

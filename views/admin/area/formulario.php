@@ -1,20 +1,26 @@
-<fieldset>
-    <legend>Información General</legend>
+<fieldset class="formulario__fieldset">
+    <legend class="formulario__legend">Información General</legend>
 
-    <label for="id">ID:</label>
-    <input type="text" id="id" name="id" placeholder="ID Área" value="<?php echo s($area->id); ?>">
+    <div class="formulario__campo">
+        <label for="id" class="formulario__label">ID:</label>
+        <input class="formulario__input" type="text" id="id" name="id" placeholder="ID Área" value="<?php echo s($area->id); ?>">
+    </div>
 
-    <label for="nombreArea">Nombre:</label>
-    <input type="text" id="nombreArea" name="nombreArea" placeholder="Nombre Área" value="<?php echo s($area->nombreArea); ?>">
+    <div class="formulario__campo">
+        <label for="nombreArea" class="formulario__label">Nombre:</label>
+        <input class="formulario__input" type="text" id="nombreArea" name="nombreArea" placeholder="Nombre Área" value="<?php echo s($area->nombreArea); ?>">
+    </div>
 
-    <label for="propiedad">Propiedad</label>
-    <select name="propiedad_id" id="propiedad">
-    <option selected value="">-- Seleccione --</option>
-    <?php foreach($propiedades as $propiedad) { ?> 
-        <option 
+    <div class="formulario__campo">
+        <label for="propiedad" class="formulario__label">Propiedad</label>
+        <select name="propiedad_id" id="propiedad" class="formulario__select">
+        <option selected value="">-- Seleccione --</option>
+        <?php foreach($propiedades as $propiedad) { ?> 
+            <option 
             <?php echo $area->propiedad_id === $propiedad->id ? 'selected' : '' ?> 
             value="<?php echo s($propiedad->id); ?>">
             <?php echo s($propiedad->nombrePropiedad); ?>
-    <?php  } ?>
-    </select>  
+        <?php  } ?>
+        </select>  
+    </div>
 </fieldset>

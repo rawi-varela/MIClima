@@ -1,7 +1,7 @@
 
 <main class="contenedor">
-    <a class="alinear-derecha" href="/logout">Cerrar Sesión</a>
-    <h3>Bienvenido Usario: <?php echo $_SESSION['nombre']; ?> </h3>
+    <!-- <a class="alinear-derecha" href="/logout">Cerrar Sesión</a> -->
+    <h3>Bienvenido Usuario: <?php echo $_SESSION['nombre']; ?> </h3>
     <p class="alinear-centro">Anfitriones</p>
 
     <?php 

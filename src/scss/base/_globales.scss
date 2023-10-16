@@ -11,7 +11,7 @@ body {
     flex-direction: column;
     font-family: v.$fuente_principal;
     font-size: 1.6rem;
-    line-height: 1.8;
+    // line-height: 1.8;
 }
 main {
     flex-grow: 1; /* Hace que el contenido principal ocupe todo el espacio disponible */
@@ -30,5 +30,8 @@ img,
 picture {
     width: 100%;
     // max-width: 100%;
+}
 
+.swal2-popup {
+    font-size: 2rem!important;
 }

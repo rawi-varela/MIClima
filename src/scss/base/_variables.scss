@@ -9,15 +9,25 @@ $desktop: 1024px;
 
 // Colores
 $azul: #001F5B;
+$azulSecundario: #007df4;
 $azulOscuro: #323C4B;
 $azulMedio: #aabcfe;
 $azulClaro: #e8edff;
-$rojo: #cb0000;
-$verde:#329f00;
+$azulGris: #e9ebf3;
+
+$rojo: rgb(169, 0, 0);
+$verde: #02db02;
+
 $negro: #1a1b15;
 $blanco: #FFFFFF;
-$gris: #e1e1e1;
+
+// $gris: e1e1e1;
 $grisOscuro: #333333;
+
+$gris: #64748B;
+$gris-claro: #F8FAFC;
+$gris-oscuro: #1E293B;
+$gris-even: #eaeef3;
 
 $separacion: 5rem;
 

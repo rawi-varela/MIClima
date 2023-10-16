@@ -1,18 +1,22 @@
 @use 'variables' as v;
 
-.contenedor {
-    width: 95%;
-    max-width: 120rem;
-    margin: 0 auto;
-}
 .seccion {
     margin-top: calc(v.$separacion / 2);
     margin-bottom: calc(v.$separacion / 2);
 }
-.contenido-centrado {
-    max-width: 80rem;
-}
 
+.contenedor {
+    width: min(95%, 140rem);
+    margin: 0 auto;
+}
+.contenedor-md {
+    width: min(95%, 80rem);
+    margin: 0 auto;
+}
+.contenedor-sm {
+    width: min(95%, 60rem);
+    margin: 0 auto;
+}
 .alinear-derecha {
     display: flex;
     justify-content: flex-end; //Colocar al final
@@ -51,6 +55,6 @@
     }
 }
 
-.imagen-small {
-    width: 20rem;
-}
+// .imagen-small {
+//     width: 20rem;
+// }

@@ -1,0 +1,46 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+
+
+.evaluacion-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    p {
+        font-size: 1.4rem;
+    }
+}
+
+.contenedor-global{
+    @include m.contenedor;
+    @include m.tablet {
+        display: flex;
+        align-items: flex-start; //P2 para manteenr fijo el aside
+        gap: 2rem;
+    }
+
+    .evaluacion-total {
+        @include m.tablet {
+            flex: 0 0 60%;
+        }
+    }
+}
+
+.registro {
+    background-color: v.$gris-claro;
+    padding: 3rem;
+    border-radius: 1rem;
+    @include m.tablet {
+        flex: 0 0 40%;
+        position: -webkit-sticky; //P1 para mantener fijo el aside
+        position: sticky; //P1 para mantener fijo el aside
+        top: 3rem;
+        // overflow-y: scroll;
+    }
+}
+
+.row {
+    text-align: center;
+}

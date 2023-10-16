@@ -1,14 +1,20 @@
-<main class="contenedor">
-    <h1>Crear Propiedad</h1>
+<h1>Registrar Propiedad</h1>
 
-    <a href="/admin" class="boton-inline-block">Volver</a>
+<div class="dashboard__contenedor-boton">
+    <a class="dashboard__boton" href="/admin/propiedades">
+        <i class="fa-solid fa-circle-arrow-left"></i>
+        Volver
+    </a>
+</div>
 
+<div class="dashboard__formulario">
     <?php
         include_once __DIR__ . "/../../templates/alertas.php";
     ?>
 
-    <form class="formulario" method="POST" enctype="multipart/form-data">
+    <form class="formulario" method="POST" action="/admin/propiedades-crear" enctype="multipart/form-data">
         <?php include __DIR__ . '/formulario.php'; ?>
-        <input type="submit" value="Registrar Propiedad" class="boton-inline-block">
+
+        <input type="submit" value="Registrar Propiedad" class="formulario__submit formulario__submit--registrar">
     </form>
-</main>
+</div>

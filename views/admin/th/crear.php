@@ -1,14 +1,20 @@
-<main class="contenedor">
-    <h1>Crear Usuario TH</h1>
+<h1>Crear Usuario TH</h1>
 
-    <a href="/admin" class="boton-inline-block">Volver</a>
+<div class="dashboard__contenedor-boton">
+    <a class="dashboard__boton" href="/admin/th">
+        <i class="fa-solid fa-circle-arrow-left"></i>
+        Volver
+    </a>
+</div>
 
+<div class="dashboard__formulario">
     <?php
         include_once __DIR__ . "/../../templates/alertas.php";
     ?>
 
-    <form class="formulario" method="POST" action="/admin/th-crear"">
+    <form class="formulario" method="POST" action="/admin/th-crear">
         <?php include __DIR__ . '/formulario.php'; ?>
-        <input type="submit" value="Registrar Puesto" class="boton-inline-block">
+
+        <input type="submit" value="Registrar Usuario" class="formulario__submit formulario__submit--registrar">
     </form>
-</main>
+</div>

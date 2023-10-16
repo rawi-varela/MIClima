@@ -22,3 +22,5 @@ class PosicionSelect extends ActiveRecord {
     }
 
 }
+
+// CREO QUE NO LA OCUPO

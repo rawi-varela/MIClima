@@ -127,9 +127,20 @@ class ActiveRecord {
         return $resultado;
     }
 
-    // Todos los registros
-    public static function all() {
-        $query = "SELECT * FROM " . static::$tabla;
+    // // Todos los registros
+    // public static function all() {
+    //     $query = "SELECT * FROM " . static::$tabla . " ORDER BY id ASC";
+    //     $resultado = self::consultarSQL($query);
+    //     return $resultado;
+    // }
+
+    public static function all($columna = '', $valor = '') {
+        $query = "SELECT * FROM " . static::$tabla ;
+        if($columna) {
+            $query .= " WHERE $columna = $valor";
+        }
+        $query .= " ORDER BY id ASC " ;
+
         $resultado = self::consultarSQL($query);
         return $resultado;
     }
@@ -143,11 +154,36 @@ class ActiveRecord {
 
     // Obtener Registros con cierta cantidad
     public static function get($limite) {
-        $query = "SELECT * FROM " . static::$tabla . " LIMIT $limite";
+        $query = "SELECT * FROM " . static::$tabla . " LIMIT $limite ORDER BY id ASC";
         $resultado = self::consultarSQL($query);
         return array_shift( $resultado ) ;
     }
-    //array_shift trae el primer resulado
+    //array_shift trae el primer resulado ("Lo saca del array")
+
+    //PAGINAR CON WHERE (para user TH)
+    public static function paginar($por_pagina, $offset, $columna = '', $valor = '') {
+        $query = "SELECT * FROM " . static::$tabla ;
+        if($columna) {
+            $query .= " WHERE $columna = $valor";
+        }
+        $query .= " ORDER BY id ASC LIMIT $por_pagina OFFSET $offset " ;
+        $resultado = self::consultarSQL($query);
+        return $resultado;
+    }
+
+    //PAGINAR CON WHERE Y or (para user TH)
+    public static function paginarOR($por_pagina, $offset, $columna = '', $valor = '', $valor2 = '') {
+        $query = "SELECT * FROM " . static::$tabla ;
+        if($columna) {
+            $query .= " WHERE $columna = $valor";
+        }
+        if($valor2) {
+            $query .= " OR $columna = $valor2";
+        }
+        $query .= " ORDER BY id ASC LIMIT $por_pagina OFFSET $offset " ;
+        $resultado = self::consultarSQL($query);
+        return $resultado;
+    }
 
     // Busca un registro por su id para saber si existe
     public static function where($columna, $valor) {
@@ -155,6 +191,43 @@ class ActiveRecord {
         $resultado = self::consultarSQL($query);
         return array_shift( $resultado ) ;
     }
+
+    // Busqueda Where con Múltiples opciones
+    public static function whereArray($array = []) {
+        $query = "SELECT * FROM " . static::$tabla . " WHERE ";
+        foreach($array as $key => $value) {
+            if($key == array_key_last($array)) {
+                $query .= " $key = '$value'";
+            } else {
+                $query .= " $key = '$value' AND ";
+            }
+        }
+        $resultado = self::consultarSQL($query);
+        return $resultado;
+    }
+
+    // Traer un total de registros
+    public static function total($columna = '', $valor = '') {
+        $query = "SELECT COUNT(*) FROM " . static::$tabla;
+        if($columna) {
+            $query .= " WHERE $columna = $valor";
+        }
+        $resultado = self::$db->query($query);
+        $total = $resultado->fetch_array();
+
+        return array_shift($total);
+    }
+
+    // Revisa si existe registro
+    public function existeRegistro($columna, $valor) {
+        $query = "SELECT * FROM " . static::$tabla  ." WHERE $columna = '$valor'";
+        $resultado = self::$db->query($query);
+        // if($resultado->num_rows) {
+        //     self::$alertas['error'][] = 'El Anfitrión ya está registrado';
+        // }
+        return $resultado;
+    }
+
 
 
     
@@ -173,10 +246,10 @@ class ActiveRecord {
         // Insertar en la base de datos
         $query = " INSERT INTO " . static::$tabla . " ( ";
         $query .= join(', ', array_keys($atributos));
-        $query .= " ) VALUES (' "; 
+        $query .= " ) VALUES ('"; 
         $query .= join("', '", array_values($atributos));
-        $query .= " ') ";
-
+        $query .= "') ";
+        
         // Resultado de la consulta
         $resultado = self::$db->query($query);
         return [
@@ -193,10 +266,10 @@ class ActiveRecord {
         // Insertar en la base de datos
         $query = " INSERT INTO " . static::$tabla . " ( ";
         $query .= join(', ', array_keys($atributos));
-        $query .= " ) VALUES (' "; 
+        $query .= " ) VALUES ('"; 
         $query .= join("', '", array_values($atributos));
-        $query .= " ') ";
-
+        $query .= "') ";
+        
         // Resultado de la consulta
         $resultado = self::$db->query($query);
         return [
@@ -221,15 +294,16 @@ class ActiveRecord {
         $query .=  join(', ', $valores );
         $query .= " WHERE id = '" . self::$db->escape_string($this->id) . "' ";
         $query .= " LIMIT 1 "; 
-
+        
         // Actualizar BD
         $resultado = self::$db->query($query);
+       
         return $resultado;
     }
 
     // Eliminar un Registro por su ID
     public function eliminar() {
-        $query = "DELETE FROM "  . static::$tabla . " WHERE id = " . self::$db->escape_string($this->id) . " LIMIT 1";
+        $query = "DELETE FROM "  . static::$tabla . " WHERE id = '" . self::$db->escape_string($this->id) . "' LIMIT 1";
         $resultado = self::$db->query($query);
         return $resultado;
     }

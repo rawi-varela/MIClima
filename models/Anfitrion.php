@@ -5,14 +5,13 @@ namespace Model;
 class Anfitrion extends ActiveRecord {
     // Base de datos
     protected static $tabla = 'anfitriones';
-    protected static $columnasDB = ['id', 'nombre', 'apellidoPat', 'apellidoMat', 'contraseña', 'genero', 'fechaInicio', 'tipoUsuario_id', 'estadoUsuario_id', 'posicion_id'];
+    protected static $columnasDB = ['id', 'nombre', 'apellidoPat', 'apellidoMat', 'contraseña', 'fechaInicio', 'tipoUsuario_id', 'estadoUsuario_id', 'posicion_id'];
 
     public $id;
     public $nombre;
     public $apellidoPat;
     public $apellidoMat;
     public $contraseña;
-    public $genero;
     public $fechaInicio;
     public $tipoUsuario_id;
     public $estadoUsuario_id;
@@ -24,7 +23,6 @@ class Anfitrion extends ActiveRecord {
         $this->apellidoPat = $args['apellidoPat'] ?? '';
         $this->apellidoMat = $args['apellidoMat'] ?? '';
         $this->contraseña = $args['contraseña'] ?? '';
-        $this->genero = $args['genero'] ?? '';
         $this->fechaInicio = $args['fechaInicio'] ?? '';
         $this->tipoUsuario_id = $args['tipoUsuario_id'] ?? '';
         $this->estadoUsuario_id = $args['estadoUsuario_id'] ?? '';
@@ -35,6 +33,9 @@ class Anfitrion extends ActiveRecord {
     public function validar() {
         if(!$this->id) {
             self::$alertas['error'][] = 'El ID del Anfitrión es Obligatorio';
+        }
+        if(strlen($this->id) != 13) {
+            self::$alertas['error'][] = 'El ID del Anfitrión debe ser de 13 caracteres';
         }
         if(!$this->nombre) {
             self::$alertas['error'][] = 'El Nombre del Anfitrión es Obligatorio';
@@ -47,9 +48,6 @@ class Anfitrion extends ActiveRecord {
         }
         if(!$this->contraseña) {
             self::$alertas['error'][] = 'La contraseña del Anfitrión es Obligatorio';
-        }
-        if(!$this->genero) {
-            self::$alertas['error'][] = 'Selecciona el Género Anfitrión';
         }
         if(!$this->fechaInicio) {
             self::$alertas['error'][] = 'Ingresa la Fecha de Inicio';

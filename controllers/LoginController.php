@@ -29,22 +29,23 @@ class LoginController {
 
                         $_SESSION['id'] = $usuario->id;
                         $_SESSION['nombre'] = $usuario->nombre . " " . $usuario->apellidoPat . " " . $usuario->apellidoMat;
-                        $_SESSION['propiedad'] = $usuario->propiedad_id;
                         $_SESSION['posicion'] = $usuario->posicion_id;
-                        $_SESSION['area'] = $usuario->area_id;
+                        $_SESSION['tipoEmpleado_id'] = $usuario->tipoEmpleado_id;
                         $_SESSION['login'] = true;
 
                         
                         // Redireccionamiento
                         if($usuario->tipoUsuario_id === "1") {
-                            $_SESSION['lider'] = $usuario->tipoUsuario_id ?? null;
+                            $_SESSION['lider'] = true;
                             header('Location: /lider-perfil');
-                        }
-                        else if($usuario->tipoUsuario_id === "2") {
-                            $_SESSION['th'] = $usuario->tipoUsuario_id ?? null;
+                        } else if($usuario->tipoUsuario_id === "2") {
+                            $_SESSION['th'] = true;
+                            header('Location: /th-perfil');
+                        } else if($usuario->tipoUsuario_id === "4") {
+                            $_SESSION['thlider'] = true;
                             header('Location: /th-perfil');
                         }  else {
-                            $_SESSION['anfitrion'] = $usuario->tipoUsuario_id ?? null;
+                            $_SESSION['anfitrion'] = true;
                             header('Location: /anfitrion-perfil');
                         }
                         
@@ -76,9 +77,13 @@ class LoginController {
     }
 
     public static function logout() {
-        session_start();
-        $_SESSION = [];
-        header('Location: /');
+        
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            session_start();
+            $_SESSION = [];
+            
+            header('Location: /');
+        }
     }
 
 }
