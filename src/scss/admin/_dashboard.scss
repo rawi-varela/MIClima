@@ -30,7 +30,25 @@
     }
 
     &__nav {
+        display: flex;
+        flex-direction: column;
 
+        .enlace {
+            @include m.enlace;
+            &:last-of-type {
+                margin-right: 2rem;
+            }
+        }
+
+        @include m.tablet {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            .enlace {
+                // margin-right: 2rem;
+            }
+        }
+        
     }
 
     &__form {
@@ -82,6 +100,7 @@
         text-transform: uppercase;
         font-weight: v.$bold;
         margin-top: .5rem;
+        text-align: center;
     }
 
     &__contenido {

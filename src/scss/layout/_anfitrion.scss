@@ -58,7 +58,7 @@
             border-top: 2px solid v.$azulMedio;
             border-bottom: 1px solid v.$azulMedio;
             text-transform: uppercase;
-            text-align: center;
+            text-align: left;
         }
     }
     tr {
@@ -75,8 +75,20 @@
         font-size: 1.1rem; 
     }
 
+    .encabezado th {
+        text-align: center;
+    }
+
     .competencias th {
         cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        // align-items: center;
+        i {
+            margin-left: auto;
+        }
+        
+        
     }
     .hidden{
         display: none;
@@ -85,7 +97,8 @@
 
         th {
             text-align: left;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
+            background-color: #4a6488;
             // background-color: #07338a;
             
         }

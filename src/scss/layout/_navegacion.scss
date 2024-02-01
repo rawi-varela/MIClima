@@ -51,6 +51,9 @@
     }
     .header-submit {
         @include m.enlace;
+    }
+    .actual {
+        color: v.$azulSecundario;
     }   
 }
 

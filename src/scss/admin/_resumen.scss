@@ -1,6 +1,13 @@
 @use 'base/mixins' as m;
 @use 'base/variables' as v;
 
+.no-webp .resumen__imagen {
+    background-image: url(../img/header.jpg);
+}
+.webp .resumen__imagen {
+    background-image: url(../img/header.webp);
+}
+
 .resumen {
     // background-image: linear-gradient(to right, rgba(v.$azul, .7), rgba(v.$azul, .9)), url(../img/bg_numeros.jpg);
     // background-image: linear-gradient(to right, rgba(v.$azul, .7), rgba(v.$azul, .9)), image-set(
@@ -12,14 +19,26 @@
     // background-size: cover;
     // background-position: center;
 
+    @include m.grid(1, 5rem);
+
+    @include m.desktop {
+        display: grid;
+        gap: 5rem;
+        grid-template-columns: 2fr 1fr;
+    }
+
+    
+    &__imagen {
+        background-position: center center;
+        background-size: cover;
+        border-radius: 1rem;
+        min-height: 40rem;
+    }
+    
     &__grid {
-        @include m.contenedor;
-        @include m.grid(1, 5rem);
-        @include m.telefono {
-            @include m.grid(2, 5rem);
-        }
-        @include m.tablet {
-            @include m.grid(3, 5rem);
+        @include m.grid(6, 2rem);
+        @include m.desktop {
+            @include m.grid(2, 3rem);
         }
     }
 
@@ -27,9 +46,12 @@
         text-align: center;
         // color: v.$blanco;
 
-        padding: 3rem;
+        padding: 1.5rem;
         border-radius: 1rem;
         background-color: v.$azul;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         // @include m.bg-gradient(v.$gris-oscuro);
     }
 
@@ -38,12 +60,12 @@
         font-weight: v.$black;
         line-height: 1;
         margin: 0;
-        font-size: 2.4rem;
+        font-size: 1.2rem;
         text-transform: uppercase;
 
         &--numero {
             @extend .resumen__texto;
-            font-size: 8rem;
+            font-size: 4rem;
         }
     }
 }

@@ -9,7 +9,7 @@ use Model\EstadoUsuario;
 class THController {
 
     public static function th( Router $router ) {
-        if(!is_th() and !is_thlider()) {
+        if(!is_th()) {
             header('Location: /login');
         }
         
@@ -21,7 +21,7 @@ class THController {
     }
 
     public static function crearAnfitrion(Router $router) {
-        if(!is_th() and !is_thlider()) {
+        if(!is_th()) {
             header('Location: /login');
         }
         $alertas = [];
@@ -32,7 +32,7 @@ class THController {
         // $rutaAnterior = $_SERVER['HTTP_REFERER'];
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if(!is_th() and !is_thlider()) {
+            if(!is_th()) {
                 header('Location: /login');
             }
 
@@ -67,7 +67,7 @@ class THController {
     }
 
     public static function actualizarAnfitrion (Router $router) {
-        if(!is_th() and !is_thlider()) {
+        if(!is_th()) {
             header('Location: /login');
         }
         $alertas = [];
@@ -132,7 +132,7 @@ class THController {
     }
     
     public static function deshabilitarAnfitrion(Router $router) {
-        if(!is_th() and !is_thlider()) {
+        if(!is_th()) {
             header('Location: /login');
         }
 

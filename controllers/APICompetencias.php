@@ -2,12 +2,9 @@
 
 namespace Controllers;
 
-use Model\Area;
 use Model\Modelo;
 use Model\Rubros;
 use Model\Competencias;
-use Model\Posicion;
-use Model\Propiedad;
 
 class APICompetencias {
     public static function index() {
@@ -31,27 +28,5 @@ class APICompetencias {
         echo json_encode($data);
     }
 
-    // public static function puestos() {
-    //     $propiedades = Propiedad::all();
-    //     $areas = Area::all();
-        
-    //     // Crear un array que contenga todas las entidades
-    //     $data = [
-    //         'propiedades' => $propiedades,
-    //         'areas' => $areas,
-    //     ];
-
-    //     // Enviar la respuesta JSON
-    //     header('Content-Type: application/json');
-    //     echo json_encode($data);  
-    // }
-
-    // public static function propiedades() {
-    //     $propiedades = Propiedad::all('tipoPropiedad_id', 1);
-
-    //     // Enviar la respuesta JSON
-    //     header('Content-Type: application/json');
-    //     echo json_encode($propiedades);  
-    // }
 
 }

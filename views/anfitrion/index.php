@@ -39,12 +39,12 @@
 			<p class="kchat">K.C.H.A.T</p>
 			<table class="anfitrion-resultados">
 			<thead>
-				<tr>
+				<tr class="encabezado">
 					<th>Competencias</th>
 					<th>Calificacion</th>
 				</tr>
 				<tr class="competencias">
-	            	<th>Compromiso</th>
+	            	<th>Compromiso <i class="fa-solid fa-angle-down"></i> </th>
 	        		<td><?php echo $anfitrion->compromiso ?? '0' ?></td>
 				</tr>
 				<tr class="hidden">
@@ -64,7 +64,7 @@
 					<td><?php echo isset($listac['r4']) ? $listac['r4'] : '0';?></td>
 				</tr>
 				<tr class="competencias">
-	            	<th>Integridad</th>
+	            	<th>Integridad <i class="fa-solid fa-angle-down"></i> </th>
 	        		<td><?php echo $anfitrion->integridad ?? '0' ?></td>
 				</tr>
 					<tr class="hidden">
@@ -84,7 +84,7 @@
 						<td><?php echo isset($listac['r7']) ? $listac['r7'] : '0';?></td>
 					</tr>
 				<tr class="competencias">
-	            	<th>Pasion por lo Extraordionario</th>
+	            	<th>Pasion por lo Extraordionario <i class="fa-solid fa-angle-down"></i> </th>
 	        		<td><?php echo $anfitrion->pasion ?? '0' ?></td>
 				</tr>
 					<tr class="hidden">
@@ -104,7 +104,7 @@
 						<td><?php echo isset($listac['r11']) ? $listac['r11'] : '0';?></td>
 					</tr>
 				<tr class="competencias">
-	            	<th>Sinergia / Trabajo en Equipo</th>
+	            	<th>Sinergia / Trabajo en Equipo <i class="fa-solid fa-angle-down"></i> </th>
 	        		<td><?php echo $anfitrion->sinergia ?? '0' ?></td>
 				</tr>
 					<tr class="hidden">
@@ -120,7 +120,7 @@
 						<td><?php echo isset($listac['r14']) ? $listac['r14'] : '0';?></td>
 					</tr>
 				<tr class="competencias">
-	            	<th>Maestria Emocional</th>
+	            	<th>Maestria Emocional <i class="fa-solid fa-angle-down"></i> </th>
 	        		<td><?php echo $anfitrion->calificacionFinal ?? '0' ?></td>
 						<tr class="hidden">
 							<th>MANEJO DE EMOCIONES/ LAS EXPRESA  ADECUADAMENTE</th>
@@ -135,7 +135,7 @@
 							<td><?php echo isset($listac['r17']) ? $listac['r17'] : '0';?></td>
 						</tr>
 				<tr class="competencias">
-	            	<th>Comunicación Empática</th>
+	            	<th>Comunicación Empática <i class="fa-solid fa-angle-down"></i> </th>
 	        		<td><?php echo $anfitrion->calificacionFinal ?? '0' ?></td>
 				</tr>
 					<tr class="hidden">
@@ -147,7 +147,7 @@
 						<td><?php echo isset($listac['r19']) ? $listac['r19'] : '0';?></td>
 					</tr>
 				<tr class="competencias">
-	            	<th>Efectividad</th>
+	            	<th>Efectividad <i class="fa-solid fa-angle-down"></i> </th>
 	        		<td><?php echo $anfitrion->efectividad ?? '0' ?></td>
 				</tr>
 					<tr class="hidden">
@@ -175,7 +175,7 @@
 						<td><?php echo isset($listac['r32']) ? $listac['r32'] : '0';?></td>
 					</tr>
 				<tr class="competencias">
-	            	<th>Liderazgo y Desarrollo de Anfitriones</th>
+	            	<th>Liderazgo y Desarrollo de Anfitriones <i class="fa-solid fa-angle-down"></i> </th>
 	        		<td><?php echo $anfitrion->liderazgo ?? '0' ?></td>
 				</tr>
 					<tr class="hidden">
@@ -208,14 +208,14 @@
 					</tr>
 				
 				<tr class="competencias">
-	            	<th>Funciones Específicas del Área</th>
+	            	<th>Funciones Específicas del Área <i class="fa-solid fa-angle-down"></i> </th>
 	        		<td><?php echo $anfitrion->funciones_esp_area ?? '0' ?></td>
 				</tr>
 			</thead>
 			</table>
         </div>
     </div>
-	<button class="generarPDF" onclick="window.open('anfitrion-PDF', '_blank')">Generar PDF</button>
+	<!-- <button class="generarPDF" onclick="window.open('anfitrion-PDF', '_blank')">Generar PDF</button> -->
 </main>
 
 <script>

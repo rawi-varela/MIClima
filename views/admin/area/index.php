@@ -14,8 +14,8 @@
             <thead class="table__thead">
                 <tr>
                     <th scope="col" class="table__th">ID</th>
-                    <th scope="col" class="table__th">Área</th>
-                    <th scope="col" class="table__th">Propiedad</th>
+                    <th scope="col" class="table__th">Departamento</th>
+                    <th scope="col" class="table__th">Unidad de Negocio</th>
                     <th scope="col" class="table__th"></th>
                 </tr>
             </thead>

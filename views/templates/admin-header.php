@@ -5,6 +5,9 @@
         </a>
 
         <nav class="dashboard__nav">
+                <?php if(is_th()): ?>
+                    <a href="/th-perfil" class="enlace">Volver</a>
+                <?php endif; ?>
             <form method="POST" action="/logout" class="dashboard__form">
                 <input type="submit" value="Cerrar Sesión" class="dashboard__submit--logout">
             </form>

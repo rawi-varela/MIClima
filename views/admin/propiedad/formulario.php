@@ -30,7 +30,7 @@
     <?php } ?>
 
     <div class="formulario__campo">
-        <label for="tipoPropiedad" class="formulario__label">Tipo de Propiedad</label>
+        <label for="tipoPropiedad" class="formulario__label">Tipo de Unidad de Negocio</label>
         <select name="tipoPropiedad_id" id="tipoPropiedad" class="formulario__select">
         <option selected value="">-- Seleccione --</option>
         <?php foreach($tipoPropiedades as $tipoPropiedad) { ?> 

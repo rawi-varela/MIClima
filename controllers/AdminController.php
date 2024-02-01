@@ -70,7 +70,7 @@ class AdminController {
     // // debuguear($consulta);
 
     public static function index( Router $router) {
-        if(!is_admin()) {
+        if(!is_admin() && !is_th()) { //Maybe un método diferente para TH //Compartir acceso a TH
             header('Location: /login');
         }
 
@@ -78,7 +78,7 @@ class AdminController {
         $areasTotal = Area::total();
         $puestosTotal = Posicion::total();
         $anfitrionesTotal = Anfitrion::total();
-        $userThTotal = Anfitrion::total('tipoUsuario_id', 2);
+        $userThTotal = Anfitrion::total('tipoUsuario_id', 3);
         $lideresTotal = Anfitrion::total('tipoUsuario_id', 1);
         
         
@@ -93,7 +93,7 @@ class AdminController {
     }
 
     public static function propiedades( Router $router) {
-        if(!is_admin()) {
+        if(!is_admin() && !is_th()) { //Compartir acceso a TH
             header('Location: /login');
         }
 
@@ -135,7 +135,7 @@ class AdminController {
     }
 
     public static function crearPropiedad (Router $router) {
-        if(!is_admin()) {
+        if(!is_admin() && !is_th()) { //Compartir acceso a TH
             header('Location: /login');
         }
         $alertas = [];
@@ -144,7 +144,7 @@ class AdminController {
         $propiedad = new Propiedad; //Instancia vacia (Necesaria?)
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if(!is_admin()) {
+            if(!is_admin() && !is_th()) { //Compartir acceso a TH
                 header('Location: /login');
             }
 
@@ -192,7 +192,7 @@ class AdminController {
     }
 
     public static function actualizarPropiedad (Router $router) {
-        if(!is_admin()) {
+        if(!is_admin() && !is_th()) { //Compartir acceso a TH
             header('Location: /login');
         }
 
@@ -220,7 +220,7 @@ class AdminController {
         $propiedad->imagen_actual = $propiedad->imagen;
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if(!is_admin()) {
+            if(!is_admin() && !is_th()) { //Compartir acceso a TH
                 header('Location: /login');
             }
 
@@ -274,7 +274,7 @@ class AdminController {
     public static function eliminarPropiedad () {
         
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if(!is_admin()) {
+            if(!is_admin() && !is_th()) { //Compartir acceso a TH
                 header('Location: /login');
             }
 
@@ -293,7 +293,7 @@ class AdminController {
     }
 
     public static function areas(Router $router) {
-        if(!is_admin()) {
+        if(!is_admin() && !is_th()) { //Compartir acceso a TH
             header('Location: /login');
         }
 
@@ -324,7 +324,7 @@ class AdminController {
     }
 
     public static function crearArea (Router $router) {
-        if(!is_admin()) {
+        if(!is_admin() && !is_th()) { //Compartir acceso a TH
             header('Location: /login');
         }
         $alertas = [];
@@ -333,7 +333,7 @@ class AdminController {
         $area = new Area; //Instancia vacia (Necesaria?)
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if(!is_admin()) {
+            if(!is_admin() && !is_th()) { //Compartir acceso a TH
                 header('Location: /login');
             }
 
@@ -359,7 +359,7 @@ class AdminController {
     }
 
     public static function actualizarArea (Router $router) { 
-        if(!is_admin()) {
+        if(!is_admin() && !is_th()) { //Compartir acceso a TH
             header('Location: /login');
         }
         $alertas = [];
@@ -383,7 +383,7 @@ class AdminController {
         // $alertas = Area::getAlertas();
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if(!is_admin()) {
+            if(!is_admin() && !is_th()) { //Compartir acceso a TH
                 header('Location: /login');
             }
 
@@ -409,7 +409,7 @@ class AdminController {
 
     public static function eliminarArea () {
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if(!is_admin()) {
+            if(!is_admin() && !is_th()) { //Compartir acceso a TH
                 header('Location: /login');
             }
 
@@ -426,7 +426,7 @@ class AdminController {
     }
 
     public static function puestos(Router $router) {
-        if(!is_admin()) {
+        if(!is_admin() && !is_th()) { //Compartir acceso a TH
             header('Location: /login');
         }
 
@@ -460,7 +460,7 @@ class AdminController {
 
 
     public static function crearPuesto (Router $router) {
-        if(!is_admin()) {
+        if(!is_admin() && !is_th()) { //Compartir acceso a TH
             header('Location: /login');
         }
         $alertas = [];
@@ -471,7 +471,7 @@ class AdminController {
         
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if(!is_admin()) {
+            if(!is_admin() && !is_th()) { //Compartir acceso a TH
                 header('Location: /login');
             }
             
@@ -500,7 +500,7 @@ class AdminController {
 
     
     public static function actualizarPuesto (Router $router) { 
-        if(!is_admin()) {
+        if(!is_admin() && !is_th()) { //Compartir acceso a TH
             header('Location: /login');
         }
         $alertas = [];
@@ -524,7 +524,7 @@ class AdminController {
         // $alertas = Area::getAlertas();
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if(!is_admin()) {
+            if(!is_admin() && !is_th()) { //Compartir acceso a TH
                 header('Location: /login');
             }
 
@@ -550,7 +550,7 @@ class AdminController {
 
     public static function eliminarPuesto () {
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if(!is_admin()) {
+            if(!is_admin() && !is_th()) { //Compartir acceso a TH
                 header('Location: /login');
             }
 
@@ -567,7 +567,7 @@ class AdminController {
     }
     
     public static function THs (Router $router) {
-        if(!is_admin()) {
+        if(!is_admin() && !is_th()) { //Compartir acceso a TH
             header('Location: /login');
         }
 
@@ -578,7 +578,7 @@ class AdminController {
             header('Location: /admin/th?page=1');
         }
         $registros_por_pagina = 6;
-        $total = Anfitrion::total('tipoUsuario_id', 2); //Anfitriones con tipoUsuario_id = 2
+        $total = Anfitrion::total('tipoUsuario_id', 3); //Anfitriones con tipoUsuario_id = 2
 
         $paginacion = new Paginacion($pagina_actual, $registros_por_pagina, $total);
 
@@ -586,7 +586,8 @@ class AdminController {
             header('Location: /admin/th?page=1');
         }
 
-        $anfitriones = Anfitrion::paginarOR($registros_por_pagina, $paginacion->offset(),'tipoUsuario_id', 2, 4);
+        $anfitriones = Anfitrion::paginar($registros_por_pagina, $paginacion->offset(), 'tipoUsuario_id', 3);
+
 
         foreach($anfitriones as $anfitrion) {
             $anfitrion->estadoU = EstadoUsuario::find($anfitrion->estadoUsuario_id);
@@ -606,7 +607,7 @@ class AdminController {
     }
 
     public static function crearTH (Router $router) {
-        if(!is_admin()) {
+        if(!is_admin() && !is_th()) { //Compartir acceso a TH
             header('Location: /login');
         }
         $alertas = [];
@@ -620,7 +621,7 @@ class AdminController {
         $thPropiedad = new ThPropiedad();
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if(!is_admin()) {
+            if(!is_admin() && !is_th()) { //Compartir acceso a TH
                 header('Location: /login');
             }
 
@@ -666,7 +667,7 @@ class AdminController {
     }
 
     public static function actualizarTH (Router $router) {
-        if(!is_admin()) {
+        if(!is_admin() && !is_th()) { //Compartir acceso a TH
             header('Location: /login');
         }
         $alertas = [];
@@ -689,7 +690,7 @@ class AdminController {
         }
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if(!is_admin()) {
+            if(!is_admin() && !is_th()) { //Compartir acceso a TH
                 header('Location: /login');
             }
             
@@ -735,7 +736,7 @@ class AdminController {
     }
 
     public static function crearPrivilegios (router $router) {
-        if(!is_admin()) {
+        if(!is_admin() && !is_th()) { //Compartir acceso a TH
             header('Location: /login');
         }
         $alertas = [];
@@ -766,7 +767,7 @@ class AdminController {
         $thPropiedad = new ThPropiedad();
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if(!is_admin()) {
+            if(!is_admin() && !is_th()) { //Compartir acceso a TH
                 header('Location: /login');
             }
             
@@ -791,7 +792,7 @@ class AdminController {
     public static function eliminarPrivilegios () {
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if(!is_admin()) {
+            if(!is_admin() && !is_th()) { //Compartir acceso a TH
                 header('Location: /login');
             }
 

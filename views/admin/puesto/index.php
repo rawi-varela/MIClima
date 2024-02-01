@@ -16,10 +16,10 @@
                     <th scope="col" class="table__th">ID</th>
                     <th scope="col" class="table__th">Puesto</th>
                     <th scope="col" class="table__th">Nivel</th>
-                    <th scope="col" class="table__th">Área</th>
-                    <th scope="col" class="table__th">Propiedad</th>
-                    <th scope="col" class="table__th">ID Líder</th>
-                    <th scope="col" class="table__th">Puesto Líder</th>
+                    <th scope="col" class="table__th">Departamento</th>
+                    <th scope="col" class="table__th">Unidad de Negocio</th>
+                    <!-- <th scope="col" class="table__th">ID Líder</th> -->
+                    <th scope="col" class="table__th">ID - Puesto Líder</th>
                     <th scope="col" class="table__th"></th>
                 </tr>
             </thead>
@@ -43,11 +43,9 @@
                             <?php echo $puesto->propiedad->nombrePropiedad; ?>
                         </td>
                         <td class="table__td">
-                            <?php echo $puesto->idLider; ?>
+                            <?php echo $puesto->idLider . " - " . $puesto->posicionLider; ?>
                         </td>
-                        <td class="table__td">
-                            <?php echo $puesto->posicionLider; ?>
-                        </td>
+                        
                         <td class="table__td--acciones">
                             <a class="table__accion table__accion--editar" href="/admin/puestos-actualizar?id=<?php echo $puesto->id; ?>">
                                 <!-- <i class="fa-solid fa-user-pen"></i> -->

@@ -14,6 +14,8 @@ function iniciarApp() {
     consultarAPI();
     puestosAPI();
 
+    evaluacionAPI();
+
     cargarPropiedades();
 
     propiedadesAPI();
@@ -275,6 +277,70 @@ async function cargarPropiedades() {
 
 
 
+  async function evaluacionAPI(){
+    const apiUrl = "http://localhost:3000/lider/api";
 
+            try {
+                // Obtener datos desde la API
+                const response = await fetch(apiUrl);
+                const data = await response.json();
 
+                // Crear preguntas en el formulario
+                const preguntasContainer = document.getElementById("preguntasContainer");
 
+                // Iterar sobre las competencias y agregar preguntas al contenedor
+                data.rubros.forEach(rubro => {
+                    // Crear encabezado de rubro
+                    const rubroHeader = document.createElement("div");
+                    rubroHeader.className = "rubro-header";
+                    rubroHeader.textContent = rubro.rubro;
+                    preguntasContainer.appendChild(rubroHeader);
+
+                    // Iterar sobre las competencias del rubro
+                    const competenciasDelRubro = data.competencias.filter(comp => comp.rubros_id === rubro.id);
+
+                    competenciasDelRubro.forEach(competencia => {
+                        // Contenedor de la competencia
+                        const competenciaContainer = document.createElement("div");
+                        competenciaContainer.className = "competencia-container";
+
+                        // Crear pregunta (label)
+                        const preguntaLabel = document.createElement("label");
+                        preguntaLabel.className = "competencia-label";
+                        preguntaLabel.textContent = competencia.competencia;
+
+                        // Agregar pregunta al contenedor
+                        competenciaContainer.appendChild(preguntaLabel);
+
+                        // Crear opciones de radio
+                        for (let i = 1; i <= 5; i++) {
+                            const radioInput = document.createElement("input");
+                            radioInput.type = "radio";
+                            radioInput.name = `competencia_${competencia.id}`;
+                            radioInput.value = i;
+
+                            const radioLabel = document.createElement("label");
+                            radioLabel.className = "radio-label";
+                            radioLabel.textContent = i;
+
+                            // Puedes agregar más estilos o clases según sea necesario
+                            competenciaContainer.appendChild(radioInput);
+                            competenciaContainer.appendChild(radioLabel);
+                        }
+
+                        // Agregar opciones al contenedor
+                        preguntasContainer.appendChild(competenciaContainer);
+                    });
+                });
+            } catch (error) {
+                console.error("Error al obtener datos desde la API:", error);
+            }
+
+            // Manejar envío del formulario
+            const evaluacionForm = document.getElementById("evaluacionForm");
+            evaluacionForm.addEventListener("submit", function(event) {
+                event.preventDefault();
+                // Puedes agregar aquí el código para procesar el formulario
+                console.log("Formulario enviado");
+            });
+  }

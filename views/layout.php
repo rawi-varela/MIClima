@@ -26,21 +26,24 @@
 
             <div class="derecha">
                 <nav class="navegacion">
-                    <a href="/nosotros">Nosotros</a>
+                    <?php if(is_th()): ?>
+                        <a href="/admin/dashboard">Administrar</a>
+                    <?php endif; ?>
+                    <!-- <a href="/nosotros">Nosotros</a> -->
                     <?php if(!is_auth() and !is_admin()): ?>
-                        <a href="/login">Iniciar Sesión</a>
+                        <a href="/login" class="<?php echo pagina_actual('/login') ? 'actual' : ''; ?>">Iniciar Sesión</a>
                     <?php endif; ?>
                     <?php if(is_admin()): ?>
                         <a href="/admin/dashboard">Administrar</a>
                     <?php endif; ?>
-                    <?php if(is_th() || is_thlider()): ?>
-                        <a href="/th-perfil">Inicio</a>
+                    <?php if(is_th()): ?>
+                        <a href="/th-perfil" class="<?php echo pagina_actual('/th') ? 'actual' : ''; ?>">Inicio</a>
                     <?php endif; ?>
-                    <?php if(is_lider() || is_thlider()): ?>
-                        <a href="/lider-perfil">Lider</a>
+                    <?php if(is_lider() || is_th()): ?>
+                        <a href="/lider-perfil" class="<?php echo pagina_actual('/lider') ? 'actual' : ''; ?>">Lider</a>
                     <?php endif; ?>
-                    <?php if(is_lider() || is_thlider() || is_th() || is_anfitrion()): ?>
-                        <a href="/anfitrion-perfil">Anfitrión</a>
+                    <?php if(is_lider() || is_th() || is_anfitrion()): ?>
+                        <a href="/anfitrion-perfil" class="<?php echo pagina_actual('/anfitrion') ? 'actual' : ''; ?>">Anfitrión</a>
                     <?php endif; ?>
                     <?php if(is_auth()): ?>
                         <!-- <a href="/logout">Cerrar Sesión</a> -->

@@ -1,6 +1,6 @@
 <table class="anfitriones">
     <thead>
-        <th>Identificación</th>
+        <th>RFC</th>
         <th>Nombre</th>
         <th>Apellido Paterno</th>
         <th>Apellido materno</th>
@@ -8,7 +8,7 @@
         <th>Estado</th>
         <th>Área</th>
         <th>Posición</th>
-        <th>Propiedad</th>
+        <th>Unidad de Negocio</th>
         <?php if(isset($ths)) { ?> <!-- Para la Tabla TH del Admin -->
         <th>Privilegios</th> 
         <?php } ?> 

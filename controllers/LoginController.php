@@ -35,16 +35,13 @@ class LoginController {
 
                         
                         // Redireccionamiento
-                        if($usuario->tipoUsuario_id === "1") {
+                        if($usuario->tipoUsuario_id === "2") {
                             $_SESSION['lider'] = true;
                             header('Location: /lider-perfil');
-                        } else if($usuario->tipoUsuario_id === "2") {
+                        } else if($usuario->tipoUsuario_id === "3") {
                             $_SESSION['th'] = true;
                             header('Location: /th-perfil');
-                        } else if($usuario->tipoUsuario_id === "4") {
-                            $_SESSION['thlider'] = true;
-                            header('Location: /th-perfil');
-                        }  else {
+                        } else {
                             $_SESSION['anfitrion'] = true;
                             header('Location: /anfitrion-perfil');
                         }
@@ -61,7 +58,7 @@ class LoginController {
                         $_SESSION['administrador'] = $admin->name;
                         $_SESSION['admin'] = true; 
 
-                        header('Location: /admin');
+                        header('Location: /admin/dashboard');
                      }
                 }else {
                     Anfitrion::setAlerta('error', 'Usuario no encontrado');

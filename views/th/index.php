@@ -1,6 +1,6 @@
 <main class="dashboard__contenido">
     <h3>Bienvenido Usuario: <?php echo $_SESSION['nombre']; ?> </h3>
-    <p class="alinear-centro">Selecciona la propiedad a la que desees ingresar</p>
+    <p class="alinear-centro">Selecciona la unidad de negocio a la que desees ingresar</p>
 
     <div class="contenedor-propiedades" id="gallery">
     </div>

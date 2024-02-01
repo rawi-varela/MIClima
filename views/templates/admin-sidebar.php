@@ -10,7 +10,7 @@
         <a href="/admin/propiedades" class="dashboard__enlace <?php echo pagina_actual('/propiedades') ? 'dashboard__enlace--actual' : ''; ?> ">
             <i class="fa-solid fa-building-columns dashboard__icono"></i>
             <span class="dashboard__menu-texto">
-                Propiedades
+                Unidad de Negocio
             </span>    
         </a>
 
@@ -27,11 +27,14 @@
                 Puestos
             </span>    
         </a>
-        <a href="/admin/th" class="dashboard__enlace <?php echo pagina_actual('/th') ? 'dashboard__enlace--actual' : ''; ?> ">
+        
+        <?php if(is_admin()): ?>
+            <a href="/admin/th" class="dashboard__enlace <?php echo pagina_actual('/th') ? 'dashboard__enlace--actual' : ''; ?> ">
             <i class="fa-solid fa-users dashboard__icono"></i>
             <span class="dashboard__menu-texto">
                 Talento Humano
             </span>    
         </a>
+        <?php endif; ?>
     </nav>
 </aside>

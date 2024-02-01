@@ -12,14 +12,14 @@
     </div>
 
     <div class="formulario__campo">
-        <label class="formulario__label" for="propiedad">Propiedad</label>
+        <label class="formulario__label" for="propiedad">Unidad de Negocio</label>
         <select class="formulario__select" name="propiedad_id" id="propiedadSelect">
             <option selected value="">-- Seleccione --</option>
         </select>
     </div>
 
     <div class="formulario__campo">
-        <label class="formulario__label" for="area">Área</label>
+        <label class="formulario__label" for="area">Departamento</label>
         <select class="formulario__select" name="area_id" id="areaSelect" >
             <option selected value="">-- Seleccione --</option>
         </select>
@@ -48,7 +48,9 @@
         <?php  } ?>
         </select>  
     </div>
+    </legend>
 
+    <legend class="formulario__legend">Información del Líder</legend>
     <div class="formulario__campo">
         <label class="formulario__label" for="idLider">ID Posición del Líder:</label>
         <input class="formulario__input" type="text" id="idLider" name="idLider" placeholder="ID Puesto Líder" value="<?php echo s($puesto->idLider); ?>">

@@ -1,4 +1,4 @@
-<h1>Actualizar Propiedad</h1>
+<h1>Actualizar Unidad de Negocio</h1>
 
 <div class="dashboard__contenedor-boton">
     <a class="dashboard__boton" href="/admin/propiedades">
@@ -15,6 +15,6 @@
     <form class="formulario" method="POST" enctype="multipart/form-data">
         <?php include __DIR__ . '/formulario.php'; ?>
 
-        <input type="submit" value="Actualizar Propiedad" class="formulario__submit formulario__submit--registrar">
+        <input type="submit" value="Actualizar Unidad de Negocio" class="formulario__submit formulario__submit--registrar">
     </form>
 </div>

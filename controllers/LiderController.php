@@ -6,12 +6,13 @@ use Model\Area;
 USE Model\Anfitrion;
 use MVC\Router;
 use Model\Posicion;
-use Intervention\Image\ImageManagerStatic as Image;
 use Model\Evaluacion;
+use Model\NivelEsperado;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class LiderController {
     public static function index( Router $router) {
-        if(!is_thlider() and !is_lider()) {
+        if(!is_th() and !is_lider()) {
             header('Location: /login');
         }
 
@@ -25,7 +26,7 @@ class LiderController {
 
 
     public static function evaluar(Router $router) {
-        if(!is_thlider() and !is_lider()) {
+        if(!is_th() and !is_lider()) {
             header('Location: /login');
         }
         
@@ -35,7 +36,10 @@ class LiderController {
         $anfitrion = Anfitrion::find($id);
         $anfitrion->posicion = Posicion::find($anfitrion->posicion_id);
         $anfitrion->area = Area::find($anfitrion->posicion->area_id);
-        
+
+        // Obtener los niveles esperados de la posición del anfitrión
+        $esperado = NivelEsperado::where('posicion_id', $anfitrion->posicion_id);
+        // debuguear($esperado);
 
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -43,12 +47,13 @@ class LiderController {
         }
 
         $router->render('lider/evaluacion', [
-            'anfitrion' => $anfitrion
+            'anfitrion' => $anfitrion,
+            'esperado' => $esperado
         ]);
     }
 
     public static function historial(Router $router) {
-        if(!is_thlider() and !is_lider()) {
+        if(!is_th() and !is_lider()) {
             header('Location: /login');
         }
         
@@ -72,7 +77,7 @@ class LiderController {
 
         // NO ESTÁ ENTRANDO AL POST
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if(!is_thlider() and !is_lider()) {
+            if(!is_th() and !is_lider()) {
                 header('Location: /login');
             }
             debuguear($_POST);
@@ -117,4 +122,6 @@ class LiderController {
             'anfitrion' => $anfitrion
         ]);
     }
+
+
 }

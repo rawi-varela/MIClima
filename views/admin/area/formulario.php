@@ -3,16 +3,16 @@
 
     <div class="formulario__campo">
         <label for="id" class="formulario__label">ID:</label>
-        <input class="formulario__input" type="text" id="id" name="id" placeholder="ID Área" value="<?php echo s($area->id); ?>">
+        <input class="formulario__input" type="text" id="id" name="id" placeholder="ID Departamento" value="<?php echo s($area->id); ?>">
     </div>
 
     <div class="formulario__campo">
         <label for="nombreArea" class="formulario__label">Nombre:</label>
-        <input class="formulario__input" type="text" id="nombreArea" name="nombreArea" placeholder="Nombre Área" value="<?php echo s($area->nombreArea); ?>">
+        <input class="formulario__input" type="text" id="nombreArea" name="nombreArea" placeholder="Nombre Departamento" value="<?php echo s($area->nombreArea); ?>">
     </div>
 
     <div class="formulario__campo">
-        <label for="propiedad" class="formulario__label">Propiedad</label>
+        <label for="propiedad" class="formulario__label">Unidad de Negocio</label>
         <select name="propiedad_id" id="propiedad" class="formulario__select">
         <option selected value="">-- Seleccione --</option>
         <?php foreach($propiedades as $propiedad) { ?> 

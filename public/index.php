@@ -66,7 +66,6 @@ $router->post('/admin/th-eliminar', [AdminController::class, 'eliminarTH']); //A
 // ANFITRION
 $router->get('/anfitrion-perfil', [EvaluacionController::class, 'anfitrion']);
 $router->post('/anfitrion-perfil', [AnfitrionController::class, 'anfitrion']);
-$router->get('/anfitrion/api', [APICompetencias::class, 'index']);
 
 
 // LIDER
@@ -75,9 +74,12 @@ $router->get('/lider-evaluar', [LiderController::class, 'evaluar']);
 $router->post('/lider-evaluar', [LiderController::class, 'evaluar']);
 $router->get('/lider-historial', [LiderController::class, 'historial']);
 $router->post('/lider-historial', [LiderController::class, 'historial']);
+$router->get('/lider/api', [APICompetencias::class, 'index']);
 
 
 // TH
+// $router->get('/admin/th', [AdminController::class, 'index']);
+
 $router->get('/th-perfil', [THController::class, 'th']);
 // $router->post('/th-perfil', [THController::class, 'th']);
 $router->get('/api/propiedades', [APIController::class, 'propiedades']);

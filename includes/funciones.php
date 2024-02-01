@@ -60,12 +60,6 @@ function is_lider() : bool {
     }
     return isset($_SESSION['lider']) && !empty($_SESSION['lider']);
 }
-function is_thlider() : bool {
-    if(!isset($_SESSION)) {
-        session_start();
-    }
-    return isset($_SESSION['thlider']) && !empty($_SESSION['thlider']);
-}
 function is_anfitrion() : bool {
     if(!isset($_SESSION)) {
         session_start();
@@ -97,7 +91,7 @@ function allAnfitriones($columna = '', $valor = '') {
 }
 
 
-function aos_animacion() : void {
+function aos_animacion() : void { //pendiente
     $efectos = ['fade-up', 'fade-down', 'fade-left', 'fade-right', 'flip-left', 'flip-right', 'zoom-in', 'zoom-in-up', 'zoom-in-down', 'zoom-out'];
     $efecto = array_rand($efectos, 1);
     echo ' data-aos="' . $efectos[$efecto] . '" ';

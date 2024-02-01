@@ -13,7 +13,7 @@ use Model\AnfitrionRelacional;
 
 class AnfitrionRelacionalController {
     public static function anfitrionesCompletos( Router $router) {
-        if(!is_th() and !is_thlider()) {
+        if(!is_th()) {
             header('Location: /login');
         }
 

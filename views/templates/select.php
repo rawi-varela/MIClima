@@ -9,7 +9,7 @@
 
 	<!-- Select para elegir la propiedad -->
 	<select name="posicion" id="posicion">
-	    <option value="" selected>-- Buscar Propiedad --</option>
+	    <option value="" selected>-- Buscar Unidad de Negocio --</option>
 		<?php foreach($propiedades as $propiedad) { ?>
 		        <option value="<?php echo $propiedad->id; ?>"><?php echo $propiedad->nombrePropiedad; ?></option>
 	    <?php } ?>

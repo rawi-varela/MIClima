@@ -8,12 +8,17 @@
     </a>
 </div>
 
+<select name="" id="">
+    <option value="">Activos</option>
+    <option value="">Inactivos</option>
+</select>
+
 <div class="dashboard__contenedor">
 <?php if(!empty($anfitriones)) { ?>
     <table class="table">
         <thead class="table__thead">
             <tr>
-                <th scope="col" class="table__th">ID</th>
+                <th scope="col" class="table__th">RFC</th>
                 <th scope="col" class="table__th">Nombre</th>
                 <th scope="col" class="table__th">Apellido Paterno</th>
                 <th scope="col" class="table__th">Apellido Materno</th>
@@ -21,7 +26,7 @@
                 <th scope="col" class="table__th">Estado</th>
                 <th scope="col" class="table__th">Puesto</th>
                 <th scope="col" class="table__th">Área</th>
-                <th scope="col" class="table__th">Propiedad</th>
+                <th scope="col" class="table__th">Unidad de Negocio</th>
                 <th scope="col" class="table__th"></th>
             </tr>
         </thead>
@@ -57,22 +62,24 @@
                         <?php echo $anfitrion->propiedad->nombrePropiedad; ?>
                     </td>
 
-                    <td class="table__td--acciones">
-                        <a class="table__accion table__accion--editar" href="/admin/th-actualizar?id=<?php echo $anfitrion->id; ?>">
-                            <!-- <i class="fa-solid fa-user-pen"></i> -->
-                            <i class="fa-solid fa-user-pen"></i>
-                            Editar
-                        </a>
+                    <td class="table__td--acciones-th">
+                        <div class="table__td--acciones-th-div">
+                            <a class="table__accion table__accion--editar" href="/admin/th-actualizar?id=<?php echo $anfitrion->id; ?>">
+                                <!-- <i class="fa-solid fa-user-pen"></i> -->
+                                <i class="fa-solid fa-user-pen"></i>
+                                Editar
+                            </a>
 
-                        <form method="POST" action="/admin/th-eliminar" class="table__formulario">
-                            <input type="hidden" name="id" value="<?php echo $anfitrion->id; ?>">
-                            <button class="table__accion table__accion--eliminar" type="submit">
-                                <i class="fa-solid fa-user-slash"></i>
+                            <form method="POST" action="/admin/th-eliminar" class="table__formulario">
+                                <input type="hidden" name="id" value="<?php echo $anfitrion->id; ?>">
+                                <button class="table__accion table__accion--eliminar" type="submit">
+                                    <i class="fa-solid fa-user-slash"></i>
                                     Inactivar
-                            </button>
-                        </form>
+                                </button>
+                            </form>
+                        </div>
 
-                        <a class="table__accion table__accion--editar" href="/admin/th-privilegios?id=<?php echo $anfitrion->id; ?>">
+                        <a class="table__accion table__accion--privilegios" href="/admin/th-privilegios?id=<?php echo $anfitrion->id; ?>">
                             <i class="fa-solid fa-user-gear"></i>
                             Privilegios
                         </a>

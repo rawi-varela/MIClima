@@ -19,10 +19,10 @@ class Area extends ActiveRecord {
 
     public function validar() {
         if(!$this->id) {
-            self::$alertas['error'][] = 'El ID del Área es Obligatorio';
+            self::$alertas['error'][] = 'El ID del Departamento es Obligatorio';
         }
         if(!$this->nombreArea) {
-            self::$alertas['error'][] = 'El nombre del Área es Obligatorio';
+            self::$alertas['error'][] = 'El nombre del Departamento es Obligatorio';
         }
         if(!$this->propiedad_id) {
             self::$alertas['error'][] = 'Selecciona una Propiedad';

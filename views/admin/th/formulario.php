@@ -35,8 +35,7 @@
         <label class="formulario__label" for="tipoUsuario">Tipo Usuario</label>
         <select class="formulario__select" name="tipoUsuario_id" id="tipoUsuario">
             <option selected value="">-- Seleccione --</option>
-            <option <?php echo $anfitrion->tipoUsuario_id === '4' ? 'selected' : '' ?>  value="4">TALENTO HUMANO Y LIDER</option>
-            <option <?php echo $anfitrion->tipoUsuario_id === '2' ? 'selected' : '' ?>  value="2">TALENTO HUMANO</option>
+            <option <?php echo $anfitrion->tipoUsuario_id === '3' ? 'selected' : '' ?>  value="3">TALENTO HUMANO</option>
         </select>
     </div>
 
@@ -54,7 +53,7 @@
     </div>
 
     <div class="formulario__campo">
-        <label class="formulario__label" for="propiedad">Propiedad</label>
+        <label class="formulario__label" for="propiedad">Unidad de Negocio</label>
         <select class="formulario__select" name="propiedad_id" id="propiedadSelect">
             <option selected value="">-- Seleccione --</option>
         </select>

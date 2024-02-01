@@ -1,10 +1,10 @@
 <main class="contenedor seccion">
-    <h1>Propiedades</h1>
+    <h1>Unidades de Negocio</h1>
 
     <div class="dashboard__contenedor-boton">
         <a class="dashboard__boton" href="/admin/propiedades-crear">
             <i class="fa-solid fa-circle-plus"></i>
-            Agregar Propiedad
+            Agregar Unidad de Negocio
         </a>
     </div>
 
@@ -14,7 +14,7 @@
             <thead class="table__thead">
                 <tr>
                     <th scope="col" class="table__th">ID</th>
-                    <th scope="col" class="table__th">Propiedad</th>
+                    <th scope="col" class="table__th">Unidad de Negocio</th>
                     <th scope="col" class="table__th">Imagen</th>
                     <th scope="col" class="table__th">Tipo</th>
                     <th scope="col" class="table__th"></th>
@@ -42,7 +42,7 @@
                         <td class="table__td">
                             <?php echo $propiedad->tipoP->tipo; ?>
                         </td>
-                        <td class="table__td--acciones">
+                        <td class="table__td--acciones-propiedades">
                             <a class="table__accion table__accion--editar" href="/admin/propiedades-actualizar?id=<?php echo $propiedad->id; ?>">
                                 <!-- <i class="fa-solid fa-user-pen"></i> -->
                                 <i class="fa-solid fa-pencil"></i>
@@ -63,7 +63,7 @@
             </tbody>
         </table>
     <?php } else { ?>
-        <p class="text-center">Aún No Hay Propiedades</p>
+        <p class="text-center">Aún No Hay Unidades de Negocio</p>
     <?php } ?>
 </div>
 
