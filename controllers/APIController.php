@@ -2,50 +2,54 @@
 
 namespace Controllers;
 
-use Model\Propiedad;
-use Model\Area;
-use Model\Posicion;
+use Model\Departamentos;
 
 class APIController {
-    public static function index() {
-        // Obtener todas las Propiedades, Áreas y Posiciones
-        $propiedades = Propiedad::all();
-        $areas = Area::all();
-        $posiciones = Posicion::all();
+   
+    //
+    public static function departamentos() {
+            $departamentos = departamentos::all();
+            
+            // Crear un array que contenga todas las entidades
+            $data = [
+                'departamentos' => $departamentos
+            ];
+    
+            // Enviar la respuesta JSON
+            header('Content-Type: application/json');
+            echo json_encode($data);  
+        }
+
+        public static function filtros() {
+            $periodo = $_GET['periodo'] ?? '';
+            $departamento = $_GET['departamento'] ?? '';
         
-        // Crear un array que contenga todas las entidades
-        $data = [
-            'propiedades' => $propiedades,
-            'areas' => $areas,
-            'posiciones' => $posiciones
-        ];
-
-        // Enviar la respuesta JSON
-        header('Content-Type: application/json');
-        echo json_encode($data);
-    }
-
-    public static function puestos() {
-        $propiedades = Propiedad::all();
-        $areas = Area::all();
+            // Aquí obtienes los resultados filtrados de tu base de datos
+            $resultadosFiltrados = ResultadosDeptos::obtenerFiltrados($periodo, $departamento);
         
-        // Crear un array que contenga todas las entidades
-        $data = [
-            'propiedades' => $propiedades,
-            'areas' => $areas,
-        ];
+            header('Content-Type: application/json');
+            echo json_encode($resultadosFiltrados);
+        }
 
-        // Enviar la respuesta JSON
-        header('Content-Type: application/json');
-        echo json_encode($data);  
-    }
 
-    public static function propiedades() {
-        $propiedades = Propiedad::all('tipoPropiedad_id', 1);
+    // public static function ejemplo() {
+    //     // Asegúrate de obtener el ID de la propiedad desde la solicitud
+    //     $propiedades_id = $_GET['propiedades_id'] ?? null;
 
-        // Enviar la respuesta JSON
-        header('Content-Type: application/json');
-        echo json_encode($propiedades);  
-    }
+    //     if ($propiedades_id) {
+    //         // Filtrar los departamentos basándose en la propiedad seleccionada
+    //         $areas = Departamentos::all('propiedades_id', $propiedades_id);
+    //     } else {
+    //         // Si no se proporciona una propiedades_id, podrías decidir devolver todos los departamentos o una respuesta vacía
+    //         $areas = [];
+    //     }
+
+    //     // Enviar la respuesta JSON
+    //     header('Content-Type: application/json');
+    //     echo json_encode($areas);  
+    // }  
 
 }
+    
+
+

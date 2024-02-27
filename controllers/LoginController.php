@@ -3,70 +3,58 @@
 namespace Controllers;
 
 use MVC\Router;
-USE Model\Anfitrion;
 use Model\Admin;
+use Model\Master;
 
 class LoginController {
     public static function login( Router $router) {
         $alertas = [];
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $auth = new Anfitrion($_POST); //Nueva instancia con lo que haya en POST (No necesaria instancia de ADMIN)
+            $auth = new Admin($_POST); //Nueva instancia con lo que haya en POST (No necesaria instancia de ADMIN)
             $alertas = $auth->validarLogin(); //Retornar errores
 
             if(empty($alertas)) {
                 //Comprobar que existe usuario
-                $usuario = Anfitrion::where('id', $auth->id);
+                // $usuario = Anfitrion::where('id', $auth->id);
 
                 //Comprobar que existe Admin
                 $admin = Admin::where('id', $auth->id);
+                //Comprobar que existe Master 
+                $master = Master::where('id', $auth->id);
 
-                if($usuario) { //Usuario Existe
-                    // Verificar el password
-                    if( $usuario->comprobarPassword($auth->contraseña) ) {
-                        // Autenticar el usuario
-                        session_start();
-
-                        $_SESSION['id'] = $usuario->id;
-                        $_SESSION['nombre'] = $usuario->nombre . " " . $usuario->apellidoPat . " " . $usuario->apellidoMat;
-                        $_SESSION['posicion'] = $usuario->posicion_id;
-                        $_SESSION['tipoEmpleado_id'] = $usuario->tipoEmpleado_id;
-                        $_SESSION['login'] = true;
-
-                        
-                        // Redireccionamiento
-                        if($usuario->tipoUsuario_id === "2") {
-                            $_SESSION['lider'] = true;
-                            header('Location: /lider-perfil');
-                        } else if($usuario->tipoUsuario_id === "3") {
-                            $_SESSION['th'] = true;
-                            header('Location: /th-perfil');
-                        } else {
-                            $_SESSION['anfitrion'] = true;
-                            header('Location: /anfitrion-perfil');
-                        }
-                        
-                    }
-                }
-                else if ($admin) { // Admin Existe
+                if ($admin) { // Admin Existe
                      // Verificar el password
-                     if( $admin->comprobarPasswordAdmin($auth->contraseña) ) {
+                     if( $admin->comprobarPassword($auth->contraseña) ) {
                         // Autenticar al Admin
                         session_start();
 
                         $_SESSION['id'] = $admin->id;
-                        $_SESSION['administrador'] = $admin->name;
                         $_SESSION['admin'] = true; 
+                        $_SESSION['nombre'] = $admin->nombreAnfitrion;
+                        $_SESSION['propiedad'] = $admin->propiedades_id; //ID de la propiedad
 
                         header('Location: /admin/dashboard');
                      }
-                }else {
-                    Anfitrion::setAlerta('error', 'Usuario no encontrado');
+                }
+                else if ($master) { // Master Existe
+                    // Verificar el password
+                    if( $master->comprobarPasswordMaster($auth->contraseña) ) {
+                       // Autenticar al Admin
+                       session_start();
+
+                       $_SESSION['id'] = $master->id;
+                       $_SESSION['master'] = true; 
+
+                       header('Location: /admin/administradores');
+                    }
+               }else{
+                    Admin::setAlerta('error', 'Usuario no encontrado');
                 }
             }
         }
 
-        $alertas = Anfitrion::getAlertas();
+        $alertas = Admin::getAlertas();
         
         $router->render('auth/login', [
             'alertas' => $alertas

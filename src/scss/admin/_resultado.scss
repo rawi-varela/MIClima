@@ -1,0 +1,46 @@
+@use 'base/mixins' as m;
+@use 'base/variables' as v;
+
+/* Estilos base */
+.resultados {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @include m.tablet {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+.resultados__genero, .resultados__filtros {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px; // Espaciado entre elementos
+
+    @include m.tablet {
+        flex-wrap: nowrap;
+    }
+}
+
+.resultados__genero {
+    p{
+        padding: 1.5rem;
+        background-color: v.$azulSecundario;
+        border-radius: 2rem;
+        color: v.$blanco;
+    }
+    span {
+        font-weight: v.$bold;
+    }
+}
+
+.resultados__filtros {
+    select {
+        padding: 1.5rem;
+        border-radius: 1rem;
+        margin: 5px; // Ajustar según necesidad
+    }
+}
+

@@ -6,7 +6,7 @@
       include_once __DIR__ . '/../templates/alertas.php'; 
     ?>
 
-  <p class="auth__texto">Inicia sesión en KCHAT</p> 
+  <p class="auth__texto">Inicia sesión en MI Clima</p> 
 
     <form method="POST" class="formulario" action="/login">
       <div class="formulario__campo">

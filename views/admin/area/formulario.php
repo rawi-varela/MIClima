@@ -7,20 +7,29 @@
     </div>
 
     <div class="formulario__campo">
-        <label for="nombreArea" class="formulario__label">Nombre:</label>
-        <input class="formulario__input" type="text" id="nombreArea" name="nombreArea" placeholder="Nombre Departamento" value="<?php echo s($area->nombreArea); ?>">
+        <label for="nombreDepartamento" class="formulario__label">Nombre:</label>
+        <input class="formulario__input" type="text" id="nombreDepartamento" name="nombreDepartamento" placeholder="Nombre Departamento" value="<?php echo s($area->nombreDepartamento); ?>">
     </div>
 
     <div class="formulario__campo">
         <label for="propiedad" class="formulario__label">Unidad de Negocio</label>
-        <select name="propiedad_id" id="propiedad" class="formulario__select">
+        <select name="propiedades_id" id="propiedad" class="formulario__select">
         <option selected value="">-- Seleccione --</option>
         <?php foreach($propiedades as $propiedad) { ?> 
             <option 
-            <?php echo $area->propiedad_id === $propiedad->id ? 'selected' : '' ?> 
+            <?php echo $area->propiedades_id === $propiedad->id ? 'selected' : '' ?> 
             value="<?php echo s($propiedad->id); ?>">
             <?php echo s($propiedad->nombrePropiedad); ?>
         <?php  } ?>
         </select>  
     </div>
+
+
+    <div class="formulario__campo">
+        <label for="cantidad" class="formulario__label">Número de Anfitriones:</label>
+        <input class="formulario__input" type="text" id="cantidad" name="cantidad" placeholder="Número de Anfitriones" value="<?php echo s($area->cantidad); ?>">
+    </div>
 </fieldset>
+
+
+

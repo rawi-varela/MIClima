@@ -4,10 +4,26 @@
 .table {
     width: 100%;
     border-collapse: collapse;
+    
+    &__progreso-contenedor {
+        width: 100%;
+        background-color: darken(v.$gris-claro, 20);
+        border-radius: 5px;
+        overflow: hidden;
+        height: 2rem;
+    }
+
+    &__progreso {
+        height: 100%;
+        background-color: v.$azulSecundario;
+        border-radius: 5px;
+        transition: width 0.5s ease;
+    }
 
     &__thead {
-        background-color: v.$gris-oscuro;
-        color: v.$blanco;
+        // background-color: v.$gris-oscuro;
+        color: v.$gris-oscuro;
+        border-bottom: 2px solid v.$gris;
     }
     &__th {
         padding: 1rem;
@@ -26,7 +42,7 @@
 
     &__td {
         padding: 1.5rem 1rem;
-        font-size: 1.2rem;
+        font-size: 1.2rem;        
 
         &--acciones {
             @extend .table__td;
@@ -52,8 +68,12 @@
                 display: flex;
                 gap: 0 2rem;
             }
-        }
-        
+        } 
+    }
+    &__td-pregunta {
+        text-align: left;
+        padding: 1.5rem 1rem;
+        font-size: 1.2rem; 
     }
 
     &__imagen {
@@ -81,4 +101,5 @@
             cursor: pointer;
         }
     }
+
 }

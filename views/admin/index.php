@@ -1,44 +1,76 @@
-<h1>Inicio</h1>
 
-<section class="resumen">
-    <div class="resumen__imagen">
-        <!-- <picture>
-            <source srcset="<?php echo $_ENV['HOST'] . '/build/img/header.webp';?>" type="image/webp">
-            <source srcset="<?php echo $_ENV['HOST'] . '/build/img/header.jpg';?>" type="image/jpeg">
-            <img loading="lazy" src="<?php echo $_ENV['HOST'] . '/build/img/header.jpg';?>.jpg" alt="Propiedades">
-        </picture> -->
+<main class="contenedor seccion">
+    <div class="inicio-admin">
+        <h1>RESULTADO GENERAL</h1>
+        <h3><?php echo $namePropiedad->nombrePropiedad ?></h3>
     </div>
 
-    <div class="resumen__grid">
-        <div <?php aos_animacion(); ?> class="resumen__bloque">
-            <p class="resumen__texto resumen__texto--numero"><?php echo $propiedadesTotal; ?></p>
-            <p class="resumen__texto">Unidades de Negocio</p>
+    <section class="resumen">
+        <div class="resumen__iconos">
+            <div class="resumen__iconos-icono">
+                <picture>
+                    <source srcset="<?php echo $_ENV['HOST'] . '/build/img/Capitalizar.webp'; ?>" type="image/webp">
+                    <source srcset="<?php echo $_ENV['HOST'] . '/build/img/Capitalizar.png'; ?>" type="image/png">
+                    <img src="<?php echo $_ENV['HOST'] . '/build/img/Capitalizar.png'; ?>" alt="Logo Mi Clima">
+                </picture>
+                <div class="labels">
+                    <p>Capitalizar</p>
+                    <span>+ 90%</span>
+                </div>
+            </div>
+            <div class="resumen__iconos-icono">
+                <picture>
+                    <source srcset="<?php echo $_ENV['HOST'] . '/build/img/Optimizar.webp'; ?>" type="image/webp">
+                    <source srcset="<?php echo $_ENV['HOST'] . '/build/img/Optimizar.png'; ?>" type="image/png">
+                    <img src="<?php echo $_ENV['HOST'] . '/build/img/Optimizar.png'; ?>" alt="Logo Mi Clima">
+                </picture>
+                <div class="labels">
+                    <p>Optimizar</p>
+                    <span>85% - 89%</span>
+                </div>
+            </div>
+            <div class="resumen__iconos-icono">
+                <picture>
+                    <source srcset="<?php echo $_ENV['HOST'] . '/build/img/Mejorar.webp'; ?>" type="image/webp">
+                    <source srcset="<?php echo $_ENV['HOST'] . '/build/img/Mejorar.png'; ?>" type="image/png">
+                    <img src="<?php echo $_ENV['HOST'] . '/build/img/Mejorar.png'; ?>" alt="Logo Mi Clima">
+                </picture>
+                <div class="labels">
+                    <p>Mejorar</p>
+                    <span>80% - 84%</span>
+                </div>
+            </div>
+            <div class="resumen__iconos-icono">
+                <picture>
+                    <source srcset="<?php echo $_ENV['HOST'] . '/build/img/Corregir.webp'; ?>" type="image/webp">
+                    <source srcset="<?php echo $_ENV['HOST'] . '/build/img/Corregir.png'; ?>" type="image/png">
+                    <img src="<?php echo $_ENV['HOST'] . '/build/img/Corregir.png'; ?>" alt="Logo Mi Clima">
+                </picture>
+                <div class="labels">
+                    <p>Corregir</p>
+                    <span>- 80%</span>
+                </div>
+            </div>
         </div>
 
-        <div <?php aos_animacion(); ?> class="resumen__bloque">
-            <p class="resumen__texto resumen__texto--numero"><?php echo $areasTotal; ?></p>
-            <p class="resumen__texto">Departamentos</p>
-        </div>
 
-        <div <?php aos_animacion(); ?> class="resumen__bloque">
-            <p class="resumen__texto resumen__texto--numero"><?php echo $puestosTotal; ?></p>
-            <p class="resumen__texto">Puestos</p>
-        </div>
 
-        <div <?php aos_animacion(); ?> class="resumen__bloque">
-            <p class="resumen__texto resumen__texto--numero"><?php echo $anfitrionesTotal ?></p>
-            <p class="resumen__texto">Anfitriones</p>
+        <div class="resumen__grid">
+            <?php foreach($totales as $total) { ?>
+                <div class="resumen__cuadro">
+                    <div class="resumen__bloque">
+                        <p class="resumen__texto resumen__texto--numero"><span><?php echo $total->globales->cantidad . ' |'; ?></span> ANFITRIONES</p>
+                        <picture>
+                            <source srcset="<?php echo $_ENV['HOST'] . '/build/img/' . $total->globales->icono . '.webp'; ?>" type="image/webp">
+                            <source srcset="<?php echo $_ENV['HOST'] . '/build/img/' . $total->globales->icono . '.png'; ?>" type="image/png">
+                            <img src="<?php echo $_ENV['HOST'] . '/build/img/' . $total->globales->icono . '.png'; ?>" alt="Icono de <?php echo $total->globales->icono;?>">        
+                        </picture>
+                        <p class="resumen__texto resumen__texto--<?php echo $total->globales->icono;?>"><?php echo $total->globales->porcentaje . '%' ;?></p>
+                    </div>
+                    <p class="resumen__texto resumen__texto--periodo"><?php echo $total->periodo; ?></p>
+                </div>
+            <?php } ?>
         </div>
+    </section>
 
-        <div <?php aos_animacion(); ?> class="resumen__bloque">
-            <p class="resumen__texto resumen__texto--numero"><?php echo $userThTotal; ?></p>
-            <p class="resumen__texto">Usuarios TH</p>
-        </div>
-
-        <div <?php aos_animacion(); ?> class="resumen__bloque">
-            <p class="resumen__texto resumen__texto--numero"><?php echo $lideresTotal; ?></p>
-            <p class="resumen__texto">Líderes</p>
-        </div>
-    </div>
-</section>
-
+</main>

@@ -6,8 +6,7 @@
         "psr-4": {
             "MVC\\" : "./",
             "Controllers\\" : "./controllers",
-            "Model\\" : "./models",
-            "Classes\\" : "./classes"
+            "Model\\" : "./models"
         }
     },
     "authors": [
@@ -17,7 +16,6 @@
         }
     ],
     "require": {
-        "intervention/image": "^2.7",
         "vlucas/phpdotenv": "^5.5"
     }
 }

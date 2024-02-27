@@ -5,7 +5,7 @@
     text-transform: uppercase;
     margin: 1rem 0;
     font-size: 1.2rem;
-    font-weight: v.$bold;
+    font-weight: v.$regular;
 
     &__error {
         background-color: lighten(v.$rojo, 60%);
