@@ -3,7 +3,7 @@
         'name' => 'rawiv/proyecto-residencias',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'ee7b2018a016a48584cabb9662b08cca64ac3f48',
+        'reference' => '09b61e3d28c5d52ffde6dd798d02f1d65f34cc73',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -31,7 +31,7 @@
         'rawiv/proyecto-residencias' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'ee7b2018a016a48584cabb9662b08cca64ac3f48',
+            'reference' => '09b61e3d28c5d52ffde6dd798d02f1d65f34cc73',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

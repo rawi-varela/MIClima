@@ -25,7 +25,7 @@ function cargarResultados() {
 
   if(periodoSeleccionado && departamentoSeleccionado) {
       // Aquí realizas la petición AJAX
-      fetch(`/http://localhost:3000/resultados/api?periodo=${periodoSeleccionado}&departamento=${departamentoSeleccionado}`)
+      fetch(`/resultados/api?periodo=${periodoSeleccionado}&departamento=${departamentoSeleccionado}`)
           .then(response => response.json())
           .then(data => actualizarTabla(data))
           .catch(error => console.error('Error:', error));
@@ -39,7 +39,7 @@ function actualizarTabla(data) {
 
 async function cargarDepartamentos() {
   try {
-      const url = "http://localhost:3000/encuesta/api";
+      const url = "/encuesta/api";
       const response = await fetch(url);
       const data = await response.json();
       const departamentos = data.departamentos; // Acceder a la lista de departamentos
