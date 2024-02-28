@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
-  const selectPeriodo = document.getElementById('selectPeriodo');
-    const selectDepartamento = document.getElementById('selectDepartamento');
+  // const selectPeriodo = document.getElementById('selectPeriodo');
+  //   const selectDepartamento = document.getElementById('selectDepartamento');
 
-    selectPeriodo.addEventListener('change', cargarResultados);
-    selectDepartamento.addEventListener('change', cargarResultados);
+  //   selectPeriodo.addEventListener('change', cargarResultados);
+  //   selectDepartamento.addEventListener('change', cargarResultados);
   iniciarApp();
 });
 
@@ -19,22 +19,22 @@ function iniciarApp() {
   
 }
 
-function cargarResultados() {
-  const periodoSeleccionado = document.getElementById('selectPeriodo').value;
-  const departamentoSeleccionado = document.getElementById('selectDepartamento').value;
+// function cargarResultados() {
+//   const periodoSeleccionado = document.getElementById('selectPeriodo').value;
+//   const departamentoSeleccionado = document.getElementById('selectDepartamento').value;
 
-  if(periodoSeleccionado && departamentoSeleccionado) {
-      // Aquí realizas la petición AJAX
-      fetch(`/resultados/api?periodo=${periodoSeleccionado}&departamento=${departamentoSeleccionado}`)
-          .then(response => response.json())
-          .then(data => actualizarTabla(data))
-          .catch(error => console.error('Error:', error));
-  }
-}
+//   if(periodoSeleccionado && departamentoSeleccionado) {
+//       // Aquí realizas la petición AJAX
+//       fetch(`/resultados/api?periodo=${periodoSeleccionado}&departamento=${departamentoSeleccionado}`)
+//           .then(response => response.json())
+//           .then(data => actualizarTabla(data))
+//           .catch(error => console.error('Error:', error));
+//   }
+// }
 
-function actualizarTabla(data) {
-  // Aquí actualizas tu tabla con los nuevos datos
-}
+// function actualizarTabla(data) {
+//   // Aquí actualizas tu tabla con los nuevos datos
+// }
 
 
 async function cargarDepartamentos() {
