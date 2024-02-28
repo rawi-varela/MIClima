@@ -54,7 +54,7 @@
 
                 <div class="boton-encuesta">
                     <a href="/encuesta" class="boton-layout">Empezar encuesta</a>
-                    <a href="/admin/dashboard" class="boton-layout">Iniciar sesión</a>
+                    <a href="/admin/dashboard" class="boton-layout">Iniciar sesión ACT</a>
                 </div>
             </div>
         <?php endif; ?>
