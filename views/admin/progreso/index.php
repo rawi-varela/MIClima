@@ -1,5 +1,5 @@
-<main class="contenedor seccion">
-    <h1>Progreso de Evaluación MI Clima 2024</h1>
+
+<h1>Progreso de Evaluación MI Clima 2024</h1>
 
     <div class="dashboard__contenedor">
     <?php if(!empty($areas)) { ?>
@@ -48,5 +48,5 @@
     <?php } ?>
 </div>
 
-</main>
+
 

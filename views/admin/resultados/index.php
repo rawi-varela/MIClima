@@ -1,5 +1,5 @@
-<main class="contenedor seccion">
-    <h1>Resultados Evaluación MI Clima 2024</h1>
+
+<h1>Resultados Evaluación MI Clima 2024</h1>
 
     <div class="resultados">
         <div class="resultados__genero">
@@ -65,5 +65,4 @@
     <?php } ?>
 </div>
 
-</main>
 

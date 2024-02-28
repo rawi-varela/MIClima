@@ -1,5 +1,5 @@
-<main class="contenedor seccion">
-    <h1>Departamentos</h1>
+
+<h1>Departamentos</h1>
 
     <div class="dashboard__contenedor-boton">
         <a class="dashboard__boton" href="/admin/areas-crear">
@@ -65,5 +65,4 @@
 
 
 
-</main>
 
