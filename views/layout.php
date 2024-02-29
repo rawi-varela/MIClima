@@ -17,31 +17,6 @@
 
 <header class="header <?php echo $inicio ? 'inicio' : ''; ?>">
     <div class="contenedor contenido-header">
-        <!-- <div class="barra">
-            <a href="/">
-            <img src="/build/img/logoMI.svg" width="200" height="90" alt="Logotipo de Mundo Imperial">
-            </a>
-
-            <div class="derecha">
-                <nav class="navegacion">
-                    <?php if(!is_admin()): ?>
-                        <a href="/login" class="<?php echo pagina_actual('/login') ? 'actual' : ''; ?>">Iniciar Sesión</a>
-                    <?php endif; ?>
-                    <?php if(is_admin()): ?>
-                        <a href="/admin/dashboard">Administrar</a>
-                    <?php endif; ?>
-                    <?php if(is_admin()): ?>
-                        <a href="/logout">Cerrar Sesión</a>
-                        <a>
-                        <form method="POST" action="/logout" class="header-form">
-                            <input type="submit" value="Cerrar Sesión" class="header-submit">
-                        </form>
-                        </a>
-                    <?php endif; ?>
-                </nav>
-            </div>
-        </div> .barra -->
-
         <?php if($_SERVER["REQUEST_URI"] === '/'): ?> 
             <div class="centro">
                 <div class="logo-centro">
@@ -54,7 +29,7 @@
 
                 <div class="boton-encuesta">
                     <a href="/encuesta" class="boton-layout">Empezar encuesta</a>
-                    <a href="/admin/dashboard" class="boton-layout">Iniciar sesión ACT</a>
+                    <a href="/admin/dashboard" class="boton-layout">Iniciar sesión</a>
                 </div>
             </div>
         <?php endif; ?>
@@ -69,12 +44,14 @@
     
 <footer class="footer">
     <div class="footer__logos">
-        <picture>
-            <source srcset="<?php echo $_ENV['HOST'] . '/build/img/logoMIblanco.webp'; ?>" type="image/webp">
-            <source srcset="<?php echo $_ENV['HOST'] . '/build/img/logoMIblanco.png'; ?>" type="image/png">
-            <img src="<?php echo $_ENV['HOST'] . '/build/img/logoMIblanco.png'; ?>" alt="Logo Mundo Imperial">
-        </picture>
-
+        <a href="/">
+            <picture>
+                <source srcset="<?php echo $_ENV['HOST'] . '/build/img/logoMIblanco.webp'; ?>" type="image/webp">
+                <source srcset="<?php echo $_ENV['HOST'] . '/build/img/logoMIblanco.png'; ?>" type="image/png">
+                <img src="<?php echo $_ENV['HOST'] . '/build/img/logoMIblanco.png'; ?>" alt="Logo Mundo Imperial">
+            </picture>
+        </a>
+    
         <picture>
             <source srcset="<?php echo $_ENV['HOST'] . '/build/img/palacio.webp'; ?>" type="image/webp">
             <source srcset="<?php echo $_ENV['HOST'] . '/build/img/palacio.png'; ?>" type="image/png">

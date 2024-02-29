@@ -1,14 +1,20 @@
 document.addEventListener('DOMContentLoaded', function() {
-  // const selectPeriodo = document.getElementById('selectPeriodo');
-  //   const selectDepartamento = document.getElementById('selectDepartamento');
-
-  //   selectPeriodo.addEventListener('change', cargarResultados);
-  //   selectDepartamento.addEventListener('change', cargarResultados);
   iniciarApp();
 });
 
 function iniciarApp() {
 
+  // IFFIE para la vista de Resultados
+  (function() {
+    const periodoInput = document.querySelector('#selectPeriodo');
+
+    if(periodoInput) {
+      cargarResultados();
+    }
+  })();
+
+
+  // IFFIE para la vista de encuesta
   (function() {
     const departamentosInput = document.querySelector('#departamento');
 
@@ -19,22 +25,113 @@ function iniciarApp() {
   
 }
 
-// function cargarResultados() {
-//   const periodoSeleccionado = document.getElementById('selectPeriodo').value;
-//   const departamentoSeleccionado = document.getElementById('selectDepartamento').value;
+async function cargarResultados() {
+  const selectPeriodo = document.getElementById('selectPeriodo');
+  const selectDepartamento = document.getElementById('selectDepartamento');
 
-//   if(periodoSeleccionado && departamentoSeleccionado) {
-//       // Aquí realizas la petición AJAX
-//       fetch(`/resultados/api?periodo=${periodoSeleccionado}&departamento=${departamentoSeleccionado}`)
-//           .then(response => response.json())
-//           .then(data => actualizarTabla(data))
-//           .catch(error => console.error('Error:', error));
-//   }
-// }
+  async function actualizarResultados() {
+      // Verificar si ambos selects tienen una opción seleccionada
+      const periodoSeleccionado = selectPeriodo.value;
+      const departamentoSeleccionado = selectDepartamento.value;
 
-// function actualizarTabla(data) {
-//   // Aquí actualizas tu tabla con los nuevos datos
-// }
+      if (periodoSeleccionado && departamentoSeleccionado) {
+          try {
+              const url = `/resultados/api?periodos_id=${encodeURIComponent(periodoSeleccionado)}&departamentos_id=${encodeURIComponent(departamentoSeleccionado)}`;
+              const respuesta = await fetch(url);
+              const resultadosFiltrados = await respuesta.json();
+
+              rellenarTabla(resultadosFiltrados);
+          } catch (error) {
+              console.error('Error al cargar los resultados:', error);
+          }
+      }
+  }
+
+  function rellenarTabla(data) {
+    const tbody = document.querySelector('.table__tbody');
+    tbody.innerHTML = ''; // Limpiar cuerpo de la tabla
+
+    const preguntas = Array.from(document.querySelectorAll('#preguntas-container span')).map(span => span.dataset.pregunta);
+    const resultadosFiltrados = data.resultadosFiltrados;
+    const resultadoPrevio = data.resultadoPrevio;
+
+    // Función para determinar la clase en base a la calificación
+    function determinarClasePorCalificacion(calificacion) {
+        if (calificacion >= 85) {
+            return 'calificacion-verde';
+        } else if (calificacion >= 80) {
+            return 'calificacion-amarillo';
+        } else {
+            return 'calificacion-rojo';
+        }
+    }
+
+    preguntas.forEach((pregunta, index) => {
+        const fila = document.createElement('tr');
+        fila.classList.add('table__tr');
+
+        // Celda para la pregunta
+        const celdaPregunta = document.createElement('td');
+        celdaPregunta.classList.add('table__td-pregunta');
+        celdaPregunta.textContent = pregunta;
+        fila.appendChild(celdaPregunta);
+
+        // Celda para el resultado actual
+        const celdaResultadoActual = document.createElement('td');
+        celdaResultadoActual.classList.add('table__td');
+        const resultadoActual = resultadosFiltrados[0] && resultadosFiltrados[0]['cp' + (index + 1)];
+        celdaResultadoActual.textContent = resultadoActual ? `${resultadoActual}%` : 'N/A';
+        celdaResultadoActual.classList.add(determinarClasePorCalificacion(resultadoActual));
+        fila.appendChild(celdaResultadoActual);
+
+        // Celda para la diferencia
+        const celdaDiferencia = document.createElement('td');
+        celdaDiferencia.classList.add('table__td');
+        if (resultadoActual && resultadoPrevio && resultadoPrevio['cp' + (index + 1)]) {
+            const diferencia = resultadoActual - resultadoPrevio['cp' + (index + 1)];
+            let textoDiferencia;
+            let claseColor;
+
+            if (diferencia > 0) {
+                textoDiferencia = `+ ${diferencia.toFixed(2)}%`;
+                claseColor = 'calificacion-verde';
+            } else if (diferencia < 0) {
+                textoDiferencia = `${diferencia.toFixed(2)}%`;
+                claseColor = 'calificacion-rojo';
+            } else {
+                textoDiferencia = '0%';
+                claseColor = determinarClasePorCalificacion(resultadoActual);
+            }
+
+            celdaDiferencia.textContent = textoDiferencia;
+            celdaDiferencia.classList.add(claseColor);
+        } else {
+            celdaDiferencia.textContent = 'N/A';
+        }
+        fila.appendChild(celdaDiferencia);
+
+        // Celda para el resultado previo
+        const celdaResultadoPrevio = document.createElement('td');
+        celdaResultadoPrevio.classList.add('table__td');
+        const resultadoAnterior = resultadoPrevio && resultadoPrevio['cp' + (index + 1)];
+        if (resultadoAnterior) {
+            celdaResultadoPrevio.textContent = `${resultadoAnterior}%`;
+            celdaResultadoPrevio.classList.add(determinarClasePorCalificacion(resultadoAnterior));
+        } else {
+            celdaResultadoPrevio.textContent = 'N/A';
+        }
+        fila.appendChild(celdaResultadoPrevio);
+
+        tbody.appendChild(fila);
+    });
+}
+
+
+
+
+  selectPeriodo.addEventListener('change', actualizarResultados);
+  selectDepartamento.addEventListener('change', actualizarResultados);
+}
 
 
 async function cargarDepartamentos() {

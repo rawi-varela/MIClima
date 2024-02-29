@@ -75,6 +75,7 @@ class Resultados extends ActiveRecord {
       return self::$alertas;
     }
 
+
 }
 
 

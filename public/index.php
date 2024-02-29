@@ -5,6 +5,7 @@ require_once __DIR__ . '/../includes/app.php';
 use MVC\Router;
 use Controllers\APIController;
 use Controllers\AdminController;
+use Controllers\APIFiltro;
 use Controllers\LoginController;
 use Controllers\PaginasController;
 
@@ -38,7 +39,7 @@ $router->get('/admin/progreso', [AdminController::class, 'progreso']);
 // Resultado
 $router->get('/admin/resultados', [AdminController::class, 'resultados']);
 $router->post('/admin/resultados', [AdminController::class, 'resultados']);
-$router->get('/resultados/api', [APIController::class, 'filtro']);
+$router->get('/resultados/api', [APIFiltro::class, 'filtro']);
 
 
 

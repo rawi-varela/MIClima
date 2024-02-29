@@ -26,21 +26,23 @@ class AdminController {
         // debuguear($namePropiedad);
 
         $totales = Periodos::all('propiedades_id', $propiedad, 'id DESC', '3'); //Ultimos 3 periodos de esa Propiedad
-
+        
         //Calificaciones globales de esos 3 periodos
         foreach ($totales as $total) {
-            $total->globales = Globales::find($total->id);
+            $total->globales = Globales::where('periodos_id', $total->id);
 
-            //Asignar nombre del icono con base a porcentaje
-            if($total->globales->porcentaje >= 90) {
-                $total->globales->icono = 'Capitalizar';
-            } else if($total->globales->porcentaje >= 85) {
-                $total->globales->icono = 'Optimizar';
-            } else if($total->globales->porcentaje >= 80) {
-                $total->globales->icono = 'Mejorar';
-            } else {
-                $total->globales->icono = 'Corregir';
-            }
+            if($total->globales) {
+                //Asignar nombre del icono con base a porcentaje
+                if($total->globales->porcentaje >= 90) {
+                    $total->globales->icono = 'Capitalizar';
+                } else if($total->globales->porcentaje >= 85) {
+                    $total->globales->icono = 'Optimizar';
+                } else if($total->globales->porcentaje >= 80) {
+                    $total->globales->icono = 'Mejorar';
+                } else {
+                    $total->globales->icono = 'Corregir';
+                }
+            }     
         }
         
         // debuguear($totales);
@@ -181,9 +183,13 @@ class AdminController {
         $propiedad = $_SESSION['propiedad'];
         $areas = Departamentos::all('propiedades_id', $propiedad);
 
+        // Obtener el id del último periodo de esa Propiedad
+        $propiedad =$_SESSION['propiedad'];
+        $lastPeriodo = Periodos::where('propiedades_id',$propiedad, 'DESC');
+
         foreach($areas as $area) {
             // $area->propiedad = Propiedades::find($area->propiedades_id); //Nombre de la Propiedad
-            $area->evaluados = Resultados::total('departamentos_id', $area->id); //Cantidad que ya respondió de ese depto
+            $area->evaluados = Resultados::total('departamentos_id', $area->id, 'periodos_id', $lastPeriodo->id); //Cantidad que ya respondió de ese depto
             $area->faltante =  $area->cantidad - $area->evaluados; //Cantidad que no ha respondido encuesta
             // $area->porcentaje = round(($area->evaluados / $area->cantidad) * 100, 2);
             $area->porcentaje = intval(($area->evaluados / $area->cantidad) * 100);
@@ -200,12 +206,14 @@ class AdminController {
         }
 
         $preguntas = Preguntas::all();
-
         $propiedad = $_SESSION['propiedad']; //Obtener Propiedad
-
         $areas = Departamentos::all('propiedades_id', $propiedad);
-        // $resultadosDeptops = ResultadosDeptos::all('propiedades_id', $propiedad);
         $periodos = Periodos::all('propiedades_id', $propiedad); // Periodos de esa Propiedad
+
+        //Datos del género
+        $lastPeriodo = Periodos::where('propiedades_id',$propiedad, 'DESC'); //último periodo de esa propiedad
+        $conteoGeneros = contarPorGenero($lastPeriodo->id); // Asegúrate de reemplazar con el ID del período específico
+        // debuguear($conteoGeneros);
 
         $globales = [];
 
@@ -227,7 +235,8 @@ class AdminController {
             'preguntas' => $preguntas,
             'globales' => array_reverse($globales),
             'periodos' => $periodos,
-            'areas' => $areas
+            'areas' => $areas,
+            'conteoGeneros' => $conteoGeneros
         ]);
     }
     

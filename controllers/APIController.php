@@ -8,28 +8,18 @@ class APIController {
    
     //
     public static function departamentos() {
-            $departamentos = departamentos::all();
-            
-            // Crear un array que contenga todas las entidades
-            $data = [
-                'departamentos' => $departamentos
-            ];
-    
-            // Enviar la respuesta JSON
-            header('Content-Type: application/json');
-            echo json_encode($data);  
-        }
+        $departamentos = departamentos::all();
+        
+        // Crear un array que contenga todas las entidades
+        $data = [
+            'departamentos' => $departamentos
+        ];
 
-        public static function filtros() {
-            $periodo = $_GET['periodo'] ?? '';
-            $departamento = $_GET['departamento'] ?? '';
-        
-            // Aquí obtienes los resultados filtrados de tu base de datos
-            $resultadosFiltrados = ResultadosDeptos::obtenerFiltrados($periodo, $departamento);
-        
-            header('Content-Type: application/json');
-            echo json_encode($resultadosFiltrados);
-        }
+        // Enviar la respuesta JSON
+        header('Content-Type: application/json');
+        echo json_encode($data);  
+    }
+
 
 
     // public static function ejemplo() {

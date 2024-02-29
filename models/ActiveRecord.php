@@ -121,6 +121,54 @@ class ActiveRecord {
         $resultado = self::consultarSQL($query);
         return $resultado;
     }
+
+    public static function filtrar($params = [], $orden = 'id ASC', $limite = '1') {
+        $query = "SELECT * FROM " . static::$tabla;
+    
+        if (!empty($params)) {
+            $query .= " WHERE ";
+            $conditions = [];
+    
+            foreach ($params as $columna => $valor) {
+                if (is_numeric($valor)) {
+                    $conditions[] = "$columna = $valor";
+                } else {
+                    $conditions[] = "$columna = '$valor'";
+                }
+            }
+    
+            $query .= join(" AND ", $conditions);
+        }
+    
+        $query .= " ORDER BY $orden"; // Ordenamiento dinámico
+    
+        if ($limite) {
+            $query .= " LIMIT $limite"; // Límite dinámico
+        }
+    
+        $resultado = self::consultarSQL($query);
+        return $resultado;
+    }
+
+    public static function findPrevio($periodos_id, $departamentos_id) {
+        $query = "
+            SELECT * 
+            FROM " . static::$tabla . "
+            WHERE departamentos_id = '$departamentos_id' 
+              AND periodos_id = (
+                SELECT MAX(periodos_id) 
+                FROM " . static::$tabla . "
+                WHERE periodos_id < '$periodos_id' 
+                  AND departamentos_id = '$departamentos_id'
+              ) 
+            ORDER BY id DESC 
+            LIMIT 1;
+        ";
+
+        $resultado = self::consultarSQL($query);
+        return array_shift($resultado);
+    }
+    
     
 
     // Busca un registro por su id
@@ -168,12 +216,14 @@ class ActiveRecord {
     }
 
     // Traer un total de registros
-    public static function total($columna = '', $valor = '') {
+    public static function total($columna = '', $valor = '', $columna2 = '', $valor2 = '') {
         $query = "SELECT COUNT(*) FROM " . static::$tabla;
         if($columna) {
             $query .= " WHERE $columna = '$valor'";
         }
-        
+        if($columna2) {
+            $query .= " AND $columna2 = '$valor2'";
+        }
         $resultado = self::$db->query($query);
         $total = $resultado->fetch_array();
         

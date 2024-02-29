@@ -26,7 +26,7 @@
 
 .resultados__genero {
     p{
-        padding: 1.5rem;
+        padding: 1rem;
         background-color: v.$azulSecundario;
         border-radius: 2rem;
         color: v.$blanco;
@@ -38,9 +38,23 @@
 
 .resultados__filtros {
     select {
-        padding: 1.5rem;
+        padding: 1rem;
         border-radius: 1rem;
         margin: 5px; // Ajustar según necesidad
     }
 }
 
+.calificacion-verde {
+    color: v.$verde; /* Un tono de verde */
+    font-weight: v.$bold;
+}
+
+.calificacion-amarillo {
+    color: v.$amarillo; /* Un tono de amarillo */
+    font-weight: v.$bold;
+}
+
+.calificacion-rojo {
+    color: v.$rojo; /* Un tono de rojo */
+    font-weight: v.$bold;
+}

@@ -56,18 +56,20 @@
 
     <div class="resumen__grid">
         <?php foreach($totales as $total) { ?>
-            <div class="resumen__cuadro">
-                <div class="resumen__bloque">
-                    <p class="resumen__texto resumen__texto--numero"><span><?php echo $total->globales->cantidad . ' |'; ?></span> ANFITRIONES</p>
-                    <picture>
-                        <source srcset="<?php echo $_ENV['HOST'] . '/build/img/' . $total->globales->icono . '.webp'; ?>" type="image/webp">
-                        <source srcset="<?php echo $_ENV['HOST'] . '/build/img/' . $total->globales->icono . '.png'; ?>" type="image/png">
-                        <img src="<?php echo $_ENV['HOST'] . '/build/img/' . $total->globales->icono . '.png'; ?>" alt="Icono de <?php echo $total->globales->icono;?>">        
-                    </picture>
-                    <p class="resumen__texto resumen__texto--<?php echo $total->globales->icono;?>"><?php echo $total->globales->porcentaje . '%' ;?></p>
+            <?php if($total->globales) { ?>
+                <div class="resumen__cuadro">
+                    <div class="resumen__bloque">
+                        <p class="resumen__texto resumen__texto--numero"><span><?php echo $total->globales->cantidad . ' |'; ?></span> ANFITRIONES</p>
+                        <picture>
+                            <source srcset="<?php echo $_ENV['HOST'] . '/build/img/' . $total->globales->icono . '.webp'; ?>" type="image/webp">
+                            <source srcset="<?php echo $_ENV['HOST'] . '/build/img/' . $total->globales->icono . '.png'; ?>" type="image/png">
+                            <img src="<?php echo $_ENV['HOST'] . '/build/img/' . $total->globales->icono . '.png'; ?>" alt="Icono de <?php echo $total->globales->icono;?>">        
+                        </picture>
+                        <p class="resumen__texto resumen__texto--<?php echo $total->globales->icono;?>"><?php echo $total->globales->porcentaje . '%' ;?></p>
+                    </div>
+                    <p class="resumen__texto resumen__texto--periodo"><?php echo $total->periodo; ?></p>
                 </div>
-                <p class="resumen__texto resumen__texto--periodo"><?php echo $total->periodo; ?></p>
-            </div>
+            <?php } ?>
         <?php } ?>
     </div>
 </section>

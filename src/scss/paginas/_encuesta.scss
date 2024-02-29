@@ -4,14 +4,34 @@
 /* Estilos Generales */
 .grid-contenedor {
     margin-top: 3rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Dos columnas, cada una ocupa la mitad del espacio */
+    @include m.grid(1,5rem);
     // height: 60vh; /* Altura completa de la ventana */
     img, picture {
-        width: 70%;    /* Ancho como porcentaje del contenedor */
+        width: 90%; 
+        max-width: 600px;   /* Ancho como porcentaje del contenedor */
         height: auto;  /* La altura se ajusta manteniendo la proporción de la imagen */
-        margin:  3rem 4rem 1rem 7rem;
+        margin:  3rem auto;
     }
+
+    @include m.tablet {
+        @include m.grid(2,1rem);
+        img, picture {
+            width: 95%; 
+            max-width: 600px;
+            height: auto;  /* La altura se ajusta manteniendo la proporción de la imagen */
+            margin:  3rem auto;
+        }
+    }
+
+    @include m.desktop {
+        img, picture {
+            width: 80%; 
+            max-width: 600px;
+            height: auto;  /* La altura se ajusta manteniendo la proporción de la imagen */
+            margin:  3rem auto;
+        }
+    }
+
 }
 
 .contenedor-encuesta {
@@ -22,23 +42,17 @@
     }
 }
 
-.encuesta__preguntas{
-    margin-left: 100px;
-    margin-right: 75px;
-}
-
-
 .encuesta {
         &__formulario {
             // display: grid;
             &__campo {
                     margin: 0;
                 }
-            @include m.grid(1, 3rem);
+            @include m.grid(3, 3rem);
 
-            @include m.tablet {
-                @include m.grid(2, 1rem);
-            }
+            // @include m.tablet {
+            //     @include m.grid(2, 1rem);
+            // }
             @include m.desktop {
                 @include m.grid(3, 1rem);
             
@@ -90,6 +104,10 @@
 
 .encuesta__preguntas {
     text-align: center; /* Centra el contenido */
+    @include m.tablet {
+        margin-left: 100px;
+        margin-right: 75px;
+    }
     h3 {
         margin-top: 5rem;
         font-size: 2.4rem;
@@ -98,6 +116,10 @@
 
 .col {
     margin: 5rem 0; /* Espaciado entre cada conjunto de preguntas y respuestas */
+    label {
+        font-size: 1.4rem;
+        margin: 2rem 0;
+    }
 }
 
 .form-check {
@@ -108,9 +130,7 @@
 .form-check-inline {
     text-align: left; /* Alinea el texto de las etiquetas a la izquierda */
 }
-.form-check-label {
-    font-size: 1.4rem;
-}
+
 .pregunta {
     text-align: left;
     margin: 15px;

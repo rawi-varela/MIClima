@@ -41,4 +41,39 @@ function pagina_actual($path ) : bool {
     return str_contains( $_SERVER['PATH_INFO'] ?? '/', $path  ) ? true : false;
 }
 
+function contarPorGenero($periodoId) {
+    global $db; // Utilizar la instancia global de la base de datos
+
+    // Primero, obtener el total de registros para el periodo_id
+    $queryTotal = "SELECT COUNT(*) as total FROM resultados WHERE periodos_id = '$periodoId'";
+    $resultadoTotal = $db->query($queryTotal);
+    $totalRegistros = $resultadoTotal->fetch_assoc()['total'];
+
+    // Si no hay registros, devolver un array vacío para evitar división por cero
+    if ($totalRegistros == 0) {
+        return [];
+    }
+
+    // Luego, obtener el conteo por género
+    $query = "
+        SELECT genero, COUNT(*) as conteo 
+        FROM resultados 
+        WHERE periodos_id = '$periodoId' 
+        GROUP BY genero
+    ";
+
+    $resultado = $db->query($query);
+
+    $conteos = [];
+    while ($registro = $resultado->fetch_assoc()) {
+        $porcentaje = ($registro['conteo'] / $totalRegistros) * 100;
+        $conteos[] = [
+            'genero' => $registro['genero'],
+            'porcentaje' => round($porcentaje) // Redondear al segundo decimal
+        ];
+    }
+
+    return $conteos;
+}
+
 
